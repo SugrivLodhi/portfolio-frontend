@@ -1,16 +1,16 @@
 // src/Header.js
 
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Link from 'next/link';
-import { breakpoints } from '@/constants';
-import { ContextProvider } from '@/context';
-import { useRouter } from 'next/router';
+import React from "react";
+import styled from "styled-components";
+import Link from "next/link";
+import { breakpoints } from "@/constants";
+
+import { theme } from "@/theme";
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #282c34;
+  background: ${theme.sectionBg};
   padding: 20px;
   color: white;
 
@@ -52,19 +52,20 @@ const NavLink = styled(Link)`
   }
 `;
 
-const Header = ({onOpen}) => {
-  const {dispatch} = useContext(ContextProvider)
-   const route = useRouter()
+const Header = () => {
+ 
   return (
     <HeaderContainer>
       <Logo>
         <NavLink href="/">Home</NavLink>
       </Logo>
       <Nav>
-        <NavLink onClick={()=> dispatch({type:"openLoginPopup"})} href="#">Login</NavLink>
-        <NavLink onClick={()=> dispatch({type:"openSignupPopup"})}  href="#">Sign Up</NavLink>
-        <NavLink onClick={()=> route.push('/my-task')} href="#">Daily Task</NavLink>
-        <NavLink  onClick={()=> route.push('/my-thought')} href="#">My Thought</NavLink>
+        <NavLink href="#about">About</NavLink>
+        <NavLink href="#skills">Skills</NavLink>
+        <NavLink href="#experience">Experience</NavLink>
+        <NavLink href="#projects">Projects</NavLink>
+        <NavLink href="#resume">Resume</NavLink>
+        <NavLink href="#contact">Get In Touch</NavLink>
       </Nav>
     </HeaderContainer>
   );

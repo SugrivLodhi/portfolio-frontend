@@ -1,4 +1,5 @@
 import { breakpoints } from "@/constants";
+import { theme } from "@/theme";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,7 +7,7 @@ const Button = styled.button`
   padding: 0.8rem;
   border: none;
   border-radius: 3px;
-  background-color: #007bff;
+  background-color: ${theme.btnBg};
   color: #ffffff;
   font-size: 1rem;
   cursor: pointer;

@@ -22,7 +22,7 @@ const Label = styled.label`
   }
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   padding: 0.8rem 0.5rem;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -46,7 +46,9 @@ const InputField = ({ label, type, placeholder, name, ...rest }) => {
   console.log("erro", errors);
   return (
     <Wrapper>
-      <Label htmlFor={name}>{label}</Label>
+      {label && (
+        <Label htmlFor={name}>{label}</Label>
+      )}
       <Input
         {...register(name)}
         id={name}

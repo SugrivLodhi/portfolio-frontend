@@ -9,6 +9,7 @@ import Modal from './Modal';
 import Login from '../Login';
 import SignUp from '../Signup';
 import { ContextProvider } from '@/context';
+import Footer from '../Footer';
 // Define breakpoints
 
 
@@ -19,21 +20,21 @@ const Container = styled.div`
 `;
 
 
-const Footer = styled.footer`
-  background: #282c34;
-  padding: 20px;
-  color: white;
-  text-align: center;
-  margin-top: auto;
+// const Footer = styled.footer`
+//   background: #282c34;
+//   padding: 20px;
+//   color: white;
+//   text-align: center;
+//   margin-top: auto;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 15px;
-  }
+//   @media (max-width: ${breakpoints.mobile}) {
+//     padding: 15px;
+//   }
 
-  @media (max-width: ${breakpoints.tablet}) {
-    padding: 18px;
-  }
-`;
+//   @media (max-width: ${breakpoints.tablet}) {
+//     padding: 18px;
+//   }
+// `;
 
 const Main = styled.main`
   flex: 1;
@@ -57,9 +58,7 @@ const Layout = ({children}) => {
       <Main>
        {children}
       </Main>
-      <Footer>
-        <p>Footer</p>
-      </Footer>
+    <Footer/>
     </Container>
   );
 };
