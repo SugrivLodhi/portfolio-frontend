@@ -41,6 +41,6 @@ export const breakpoints = {
     {
       title: 'Apna Mistree, apna Helper',
       description: 'A full-stack recruiter application developed using Node.js, Express, and Next.js and PostgreSQL',
-      link: 'http://localhost:3000/comming-soon',
+      link: 'https://sl-portfolio-4wk0zt6ju-sugrivlodhis-projects.vercel.app/comming-soon',
     },
   ];
