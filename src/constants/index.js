@@ -17,7 +17,7 @@ export const breakpoints = {
     },
     {
       company: 'Cimet ',
-      role: 'Junior ReactJs Developer',
+      role: 'ReactJs Developer',
       duration: 'Feb 2022 -  June 2023',
     },
     {
