@@ -8,17 +8,22 @@ export const breakpoints = {
     {
       company: 'Cilans System',
       role: 'Full Stack Developer',
-      duration: '2024 - Present',
+      duration: 'June 2024 - Present',
     },
     {
       company: 'Tecmantras Solutions',
       role: 'ReactJs Developer',
-      duration: '07/2023 - 03/2024',
+      duration: 'July 2023 - March 2024',
     },
     {
       company: 'Cimet ',
       role: 'Junior ReactJs Developer',
-      duration: '02/2022 - 06/2023',
+      duration: 'Feb 2022 -  June 2023',
+    },
+    {
+      company: 'Newton School ',
+      role: 'Full Stack Development Intern',
+      duration: 'July 2021 - Feb 2022',
     },
   ];
 
