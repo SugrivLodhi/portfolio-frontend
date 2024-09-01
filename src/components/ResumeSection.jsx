@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaDownload } from 'react-icons/fa';
-import { Container, Title } from './common';
+import { Container, SubTitle, Title } from './common';
 import { theme } from '@/theme';
 
 
@@ -33,8 +33,8 @@ const DownloadIcon = styled(FaDownload)`
 
 const ResumeSection = () => {
   return (
-    <Container id="resume" >
-      <Title>Download My Resume</Title>
+    <Container >
+      <SubTitle>Download My Resume</SubTitle>
       <DownloadButton href="Resume-Sugriv-resume-Full-Stack-Developer.pdf" download="sugriv.pdf">
         <DownloadIcon /> Download Resume
       </DownloadButton>

@@ -50,7 +50,24 @@ const CopyrightContainer = styled.div`
   font-size: 0.9em;
 `;
 
-const Footer = () => (
+const Footer = () =>{
+  const handleLinkClick = (event) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute('href').slice(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const footerOffset = -50; 
+      const elementPosition = targetElement.getBoundingClientRect().bottom;
+      const offsetPosition = elementPosition + window.pageYOffset - window.innerHeight + footerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+  return(
   <FooterContainer>
     <SocialMediaContainer>
       <SocialLink href="https://www.linkedin.com/in/sugriv-lodhi-ab7b33143/" target="_blank" rel="noopener noreferrer">
@@ -64,14 +81,14 @@ const Footer = () => (
       </SocialLink>
     </SocialMediaContainer>
     <ContactInfoContainer>
-      <p>Email: <a href="mailto:your.email@example.com">sugrivmlvt.com</a></p>
+      <p>Email: <a href="mailto:sugrivmlvt@gmail.com">sugrivmlvt.com</a></p>
       {/* Optional phone number */}
       <p>Phone: (+91)-8278663913</p>
     </ContactInfoContainer>
     <QuickLinksContainer>
-      <QuickLink href="#about">About</QuickLink>
-      <QuickLink href="#projects">Projects</QuickLink>
-      <QuickLink href="#contact">Contact</QuickLink>
+      <QuickLink  onClick={handleLinkClick} href="#about">About</QuickLink>
+      <QuickLink  onClick={handleLinkClick} href="#projects">Projects</QuickLink>
+      <QuickLink  onClick={handleLinkClick} href="#contact">Contact</QuickLink>
     </QuickLinksContainer>
     <CopyrightContainer>
       <p>&copy; {new Date().getFullYear()} Sugriv Lodhi. All rights reserved.</p>
@@ -79,4 +96,5 @@ const Footer = () => (
   </FooterContainer>
 );
 
+}
 export default Footer;

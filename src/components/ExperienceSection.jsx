@@ -4,8 +4,9 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { breakpoints, experiences } from '@/constants';
 
-import { Container, Title } from './common';
+import { Container, Item, ItemWrapper, Title } from './common';
 import { theme } from '@/theme';
+import ProjectSection, { ProjectItem, ProjectsGrid } from './ProjectSection';
 
 // Define animations
 const fadeInUp = keyframes`
@@ -52,7 +53,7 @@ const ExperienceItem = styled.div`
   padding: 20px;
   border-radius: 8px;
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   text-align: left;
   animation: ${fadeInUp} 1s ease-out;
   transition: transform 0.3s;
@@ -86,15 +87,15 @@ const ExperienceSection = () => {
   return (
     <Container id="experience">
       <Title>Experience</Title>
-      <ExperienceList>
+      <ItemWrapper>
         {experiences.map((experience, index) => (
-          <ExperienceItem key={index} style={{ animationDelay: `${index * 0.2}s` }}>
+          <Item key={index} style={{ animationDelay: `${index * 0.2}s` }}>
             <CompanyName>{experience.company}</CompanyName>
             <Role>{experience.role}</Role>
             <Duration>{experience.duration}</Duration>
-          </ExperienceItem>
+          </Item>
         ))}
-      </ExperienceList>
+      </ItemWrapper>
     </Container>
   );
 };

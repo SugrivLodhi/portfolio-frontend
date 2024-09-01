@@ -43,7 +43,7 @@ export const Input = styled.input`
 const InputField = ({ label, type, placeholder, name, ...rest }) => {
   const { register } = useFormContext();
   const { errors } = useFormState();
-  console.log("erro", errors);
+ 
   return (
     <Wrapper>
       {label && (

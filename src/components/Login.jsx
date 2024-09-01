@@ -57,7 +57,6 @@ const Login = () => {
   };
   const onSubmit = async (data) => {
     const response = await login(data);
-    console.log("re", response);
   };
 
   return (

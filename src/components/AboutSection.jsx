@@ -16,8 +16,7 @@ const Container = styled.section`
   background-color: ${theme.cardBg};
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
+  border-bottom: 1px solid ${theme.borderColor};
 
   @media (max-width: 1024px) {
     flex-direction: column-reverse;
@@ -127,7 +126,7 @@ const About = () => {
       <TextSection>
         <Title>About Me</Title>
         <p>
-          I am a passionate Full Stack Developer specializing in JavaScript, with experience in building dynamic and responsive web applications. I have a strong background in both frontend and backend development, using modern technologies like React.js, Node.js, and more. My commitment to continuous learning drives me to constantly evolve my skill set and deliver high-quality solutions.
+        I am a Full Stack Developer with a focus on JavaScript, adept at building dynamic, maintainable, and responsive web applications. Skilled in both frontend and backend with React.js and Node.js, I’m committed to writing clean code and continuously improving my craft.
         </p>
       </TextSection>
       <ImageSection>

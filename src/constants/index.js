@@ -26,16 +26,21 @@ export const breakpoints = {
     {
       title: 'Insitify',
       description: 'A platform built with Next.js and React.js for managing institutional operations.',
-      link: '#',
+      link: 'https://www.insightifi.in/',
     },
     {
-      title: 'E-commerce Site',
-      description: 'A full-stack e-commerce application developed using Node.js, Express, and PostgreSQL.',
-      link: '#',
+      title: 'Econnex',
+      description: 'A comparsion plateform where you can compare Electricty, gas, and more, built with Next.js,Express, and PostgreSQL',
+      link: 'https://www.econnex.com.au/',
     },
     {
-      title: 'Portfolio Website',
-      description: 'A personal portfolio site showcasing skills and projects, built with Next.js.',
-      link: '#',
+      title: 'Amazon Clone',
+      description: 'A full-stack e-commerce application developed using Node.js, Express, and React js.',
+      link: 'https://amzon-clone-diw3knyk8-sugrivlodhis-projects.vercel.app/',
+    },
+    {
+      title: 'Apna Mistree, apna Helper',
+      description: 'A full-stack recruiter application developed using Node.js, Express, and Next.js and PostgreSQL',
+      link: 'http://localhost:3000/comming-soon',
     },
   ];

@@ -39,9 +39,7 @@ const SignUp = () => {
     }
   };
   const onSubmit = async (data) => {
-    console.log(data);
-    const response = await signUp(data);
-    console.log("re", response);
+     await signUp(data);
   };
 
   return (

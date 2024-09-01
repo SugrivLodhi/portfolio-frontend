@@ -1,17 +1,10 @@
 // src/Layout.js
 
-import React, { useContext, useState} from 'react';
+import React  from 'react';
 import styled from 'styled-components';
 import { breakpoints } from '@/constants';
 import Header from './Header';
-import About from '../AboutSection';
-import Modal from './Modal';
-import Login from '../Login';
-import SignUp from '../Signup';
-import { ContextProvider } from '@/context';
 import Footer from '../Footer';
-// Define breakpoints
-
 
 const Container = styled.div`
   display: flex;
@@ -20,43 +13,34 @@ const Container = styled.div`
 `;
 
 
-// const Footer = styled.footer`
-//   background: #282c34;
-//   padding: 20px;
-//   color: white;
-//   text-align: center;
-//   margin-top: auto;
 
-//   @media (max-width: ${breakpoints.mobile}) {
-//     padding: 15px;
-//   }
-
-//   @media (max-width: ${breakpoints.tablet}) {
-//     padding: 18px;
-//   }
-// `;
 
 const Main = styled.main`
   flex: 1;
   padding: 20px;
   background: #eae8e8;
+  margin-top: 60px;  // Adjust this value according to the height of your header
+  overflow-y: auto;
 
   @media (max-width: ${breakpoints.mobile}) {
     padding: 10px;
+    margin-top: 40px;  // Adjust this value for mobile
+  
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 15px;
+    margin-top: 55px;  // Adjust this value for tablets
   }
 `;
 
-const Layout = ({children}) => {
- 
+
+const Layout = ({ children }) => {
   return (
     <Container>
      <Header/>
       <Main>
-       {children}
+        {children}
       </Main>
     <Footer/>
     </Container>

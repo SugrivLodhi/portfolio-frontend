@@ -6,8 +6,7 @@ export const Container = styled.section`
   padding: 50px;
   background-color: ${theme.cardBg};
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
+  border-bottom: 1px solid ${theme.borderColor};
   @media (max-width: ${breakpoints.mobile}) {
     padding: 30px;
   }
@@ -28,10 +27,39 @@ export const fadeInUp = keyframes`
   }
 `;
 
+export const ItemWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
 
+// Individual project item styling and animation
+export const Item = styled.div`
+  background: ${theme.sectionBg};
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px;
+  text-align: left;
+  animation: ${fadeInUp} 1s ease-out;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+`;
 
 export const Title = styled.h2`
   font-size: 2.5em;
   margin-bottom: 30px;
+  animation: ${fadeInUp} 1s ease-out;
+`;
+
+export const SubTitle = styled.h3`
+  font-size: 2em;
+  margin-bottom: 24px;
   animation: ${fadeInUp} 1s ease-out;
 `;

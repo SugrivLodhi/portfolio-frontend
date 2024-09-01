@@ -1,5 +1,3 @@
-// src/components/SkillSection.js
-
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import {  skills } from '@/constants';
@@ -24,7 +22,7 @@ const fadeInUp = keyframes`
 const SkillsGrid = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 12px;
   flex-wrap: wrap;
 `;
 
@@ -32,9 +30,9 @@ const SkillsGrid = styled.div`
 const SkillItem = styled.div`
   background: ${theme.sectionBg};
   color: white;
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
-  min-width: 150px;
+  min-width: 130px;
   margin: 10px;
   font-size: 1.2em;
   font-weight: bold;
