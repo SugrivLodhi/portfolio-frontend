@@ -1,12 +1,14 @@
 // src/Header.js
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { breakpoints } from "@/constants";
-import slLogo from '../../../public/sl-brand.jpg'
+import slLogo from "../../../public/sl-brand.jpg";
 import { theme } from "@/theme";
 import Image from "next/image";
+import { FaBars } from "react-icons/fa";
+
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
@@ -19,11 +21,6 @@ const HeaderContainer = styled.header`
   width: 100%;
   z-index: 1000;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    flex-direction: column;
-    padding: 15px;
-  }
-
   @media (max-width: ${breakpoints.tablet}) {
     padding: 18px;
   }
@@ -32,10 +29,6 @@ const HeaderContainer = styled.header`
 const Logo = styled.div`
   font-size: 1.5em;
   font-weight: bold;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    margin-bottom: 15px;
-  }
 `;
 
 const Nav = styled.nav`
@@ -43,8 +36,19 @@ const Nav = styled.nav`
   gap: 20px;
 
   @media (max-width: ${breakpoints.mobile}) {
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    background: ${theme.sectionBg};
+    width: 250px;
+    height: 30vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 999;
+    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
+    transition: transform 0.3s ease-in-out;
   }
 `;
 
@@ -55,13 +59,26 @@ const NavLink = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
+
   img {
-    border-radius:50%;
+    border-radius: 50%;
     margin-left: 1rem;
   }
 `;
 
+const HamburgerIcon = styled.div`
+  display: none;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5em;
+  }
+`;
+
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleLinkClick = (event) => {
     event.preventDefault();
     const targetId = event.currentTarget.getAttribute('href').slice(1);
@@ -75,19 +92,25 @@ const Header = () => {
         behavior: 'smooth',
       });
     }
+    setIsOpen(false); // Close the menu after clicking a link
   };
-  
-  // Usage
-  
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <HeaderContainer>
       <Logo>
         <NavLink href="/">
-        <Image src={slLogo} width={40} height={32} alt="sl-brand" />
+          <Image src={slLogo} width={40} height={32} alt="sl-brand" />
         </NavLink>
       </Logo>
-      <Nav>
-        <NavLink  onClick={handleLinkClick} href="#about">About</NavLink>
+      <HamburgerIcon onClick={toggleMenu}>
+        <FaBars />
+      </HamburgerIcon>
+      <Nav isOpen={isOpen}>
+        <NavLink onClick={handleLinkClick} href="#about">About</NavLink>
         <NavLink onClick={handleLinkClick} href="#skills">Skills</NavLink>
         <NavLink onClick={handleLinkClick} href="#experience">Experience</NavLink>
         <NavLink onClick={handleLinkClick} href="#projects">Projects</NavLink>
