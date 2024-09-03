@@ -32,6 +32,14 @@ export const ItemWrapper = styled.div`
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    gap: 0.8rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    gap: 0.5rem;
+  }
 `;
 
 // Individual project item styling and animation
@@ -50,16 +58,48 @@ export const Item = styled.div`
   &:hover {
     transform: translateY(-10px);
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 16px;
+    max-width: 350px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 12px;
+    max-width: 100%;
+  }
 `;
 
+// Title styling and animation
 export const Title = styled.h2`
   font-size: 2.5em;
   margin-bottom: 30px;
   animation: ${fadeInUp} 1s ease-out;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
 `;
 
+// Subtitle styling and animation
 export const SubTitle = styled.h3`
   font-size: 2em;
   margin-bottom: 24px;
   animation: ${fadeInUp} 1s ease-out;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.7em;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.5em;
+    margin-bottom: 18px;
+  }
 `;

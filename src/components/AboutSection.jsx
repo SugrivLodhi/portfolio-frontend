@@ -1,5 +1,3 @@
-// src/components/About.js
-
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
@@ -21,6 +19,14 @@ const Container = styled.section`
   @media (max-width: 1024px) {
     flex-direction: column-reverse;
     text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 10px;
   }
 `;
 
@@ -89,6 +95,26 @@ const TextSection = styled.div`
       font-size: 1.1em;
     }
   }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.8em;
+    }
+
+    p {
+      font-size: 1em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 1.5em;
+    }
+
+    p {
+      font-size: 0.9em;
+    }
+  }
 `;
 
 // Styling for the image container
@@ -117,6 +143,18 @@ const ImageSection = styled.div`
       max-width: 250px;
     }
   }
+
+  @media (max-width: 768px) {
+    img {
+      max-width: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    img {
+      max-width: 150px;
+    }
+  }
 `;
 
 // The About component with CSS animations
@@ -126,7 +164,7 @@ const About = () => {
       <TextSection>
         <Title>About Me</Title>
         <p>
-        I am a Full Stack Developer with a focus on JavaScript, adept at building dynamic, maintainable, and responsive web applications. Skilled in both frontend and backend with React.js and Node.js, I’m committed to writing clean code and continuously improving my craft.
+          I am a Full Stack Developer with a focus on JavaScript, adept at building dynamic, maintainable, and responsive web applications. Skilled in both frontend and backend with React.js and Node.js, I’m committed to writing clean code and continuously improving my craft.
         </p>
       </TextSection>
       <ImageSection>

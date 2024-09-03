@@ -1,9 +1,9 @@
 // src/components/ProjectSection.js
 
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled  from 'styled-components';
 import {  projects } from '@/constants';
-import { Container, fadeInUp, Item, ItemWrapper, Title } from './common';
+import { Container, Item, ItemWrapper, Title } from './common';
 
 
 // Project title and description styling

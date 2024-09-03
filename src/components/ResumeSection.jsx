@@ -1,11 +1,8 @@
-// src/components/ResumeSection.js
-
 import React from 'react';
 import styled from 'styled-components';
 import { FaDownload } from 'react-icons/fa';
-import { Container, SubTitle, Title } from './common';
+import { Container, SubTitle } from './common';
 import { theme } from '@/theme';
-
 
 // Button styling for download button
 const DownloadButton = styled.a`
@@ -24,16 +21,31 @@ const DownloadButton = styled.a`
   &:hover {
     background-color: #21a1f1;
   }
+
+  @media (max-width: 768px) {
+    padding: 12px 24px;
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
 `;
 
 // Icon styling for the download button
 const DownloadIcon = styled(FaDownload)`
   margin-right: 10px;
+
+  @media (max-width: 480px) {
+    margin-right: 8px;
+  }
 `;
 
+// The ResumeSection component
 const ResumeSection = () => {
   return (
-    <Container >
+    <Container>
       <SubTitle>Download My Resume</SubTitle>
       <DownloadButton href="Resume-Sugriv-resume-Full-Stack-Developer.pdf" download="sugriv.pdf">
         <DownloadIcon /> Download Resume
