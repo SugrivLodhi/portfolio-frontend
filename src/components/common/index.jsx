@@ -12,7 +12,10 @@ export const Container = styled.section`
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 40px;
+    padding: 36px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 24px;
   }
 `;
 
@@ -32,7 +35,7 @@ export const ItemWrapper = styled.div`
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-
+  width: 100%;
   @media (max-width: ${breakpoints.tablet}) {
     gap: 0.8rem;
   }
@@ -61,12 +64,11 @@ export const Item = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 16px;
-    max-width: 350px;
+    
   }
 
   @media (max-width: ${breakpoints.mobile}) {
     padding: 12px;
-    max-width: 100%;
   }
 `;
 

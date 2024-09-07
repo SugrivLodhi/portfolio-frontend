@@ -47,7 +47,7 @@ const ResumeSection = () => {
   return (
     <Container>
       <SubTitle>Download My Resume</SubTitle>
-      <DownloadButton href="Resume-Sugriv-resume-Full-Stack-Developer.pdf" download="sugriv.pdf">
+      <DownloadButton href="/Resume-Sugriv-resume-Full-Stack-Developer.pdf" download="sugriv.pdf">
         <DownloadIcon /> Download Resume
       </DownloadButton>
     </Container>
