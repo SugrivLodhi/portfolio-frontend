@@ -1,21 +1,19 @@
-// src/Header.js
-
 import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { breakpoints } from "@/constants";
 import slLogo from "../../../public/sl-brand.jpg";
-import { theme } from "@/theme";
 import Image from "next/image";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaSun, FaMoon } from "react-icons/fa"; // Import the sun and moon icons
+import { useTheme } from "../../../context";
 
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${theme.sectionBg};
+  background: ${({ theme }) => theme.sectionBg};
   padding: 20px;
-  color: white;
+  color: ${({ theme }) => theme.textColor};
   position: fixed;
   top: 0;
   width: 100%;
@@ -39,7 +37,7 @@ const Nav = styled.nav`
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     flex-direction: column;
     align-items: flex-start;
-    background: ${theme.sectionBg};
+    background: ${({ theme }) => theme.sectionBg};
     width: 250px;
     height: 30vh;
     position: fixed;
@@ -47,13 +45,14 @@ const Nav = styled.nav`
     right: 0;
     padding: 20px;
     z-index: 999;
-    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
+    transform: ${({ isOpen }) =>
+      isOpen ? "translateX(0)" : "translateX(100%)"};
     transition: transform 0.3s ease-in-out;
   }
 `;
 
 const NavLink = styled(Link)`
-  color: white;
+  color: ${({ theme }) => theme.textColor};
   text-decoration: none;
 
   &:hover {
@@ -76,20 +75,31 @@ const HamburgerIcon = styled.div`
   }
 `;
 
+const ToggleButton = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.textColor};
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: 10px;
+`;
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleLinkClick = (event) => {
     event.preventDefault();
-    const targetId = event.currentTarget.getAttribute('href').slice(1);
+    const targetId = event.currentTarget.getAttribute("href").slice(1);
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       const headerOffset = 30; // Adjust based on your header height
       const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + document.documentElement.scrollTop - headerOffset;
+      const offsetPosition =
+        elementPosition + document.documentElement.scrollTop - headerOffset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
     setIsOpen(false); // Close the menu after clicking a link
@@ -110,12 +120,25 @@ const Header = () => {
         <FaBars />
       </HamburgerIcon>
       <Nav isOpen={isOpen}>
-        <NavLink onClick={handleLinkClick} href="#about">About</NavLink>
-        <NavLink onClick={handleLinkClick} href="#skills">Skills</NavLink>
-        <NavLink onClick={handleLinkClick} href="#experience">Experience</NavLink>
-        <NavLink onClick={handleLinkClick} href="#projects">Projects</NavLink>
-        <NavLink onClick={handleLinkClick} href="#contact">Get In Touch</NavLink>
+        <NavLink onClick={handleLinkClick} href="#about">
+          About
+        </NavLink>
+        <NavLink onClick={handleLinkClick} href="#skills">
+          Skills
+        </NavLink>
+        <NavLink onClick={handleLinkClick} href="#experience">
+          Experience
+        </NavLink>
+        <NavLink onClick={handleLinkClick} href="#projects">
+          Projects
+        </NavLink>
+        <NavLink onClick={handleLinkClick} href="#contact">
+          Get In Touch
+        </NavLink>
       </Nav>
+      <ToggleButton onClick={toggleTheme}>
+        {isDarkMode ? <FaSun /> : <FaMoon />} {/* Toggle between sun and moon icons */}
+      </ToggleButton>
     </HeaderContainer>
   );
 };

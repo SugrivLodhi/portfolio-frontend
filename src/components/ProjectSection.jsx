@@ -18,7 +18,7 @@ const ProjectDescription = styled.p`
 `;
 
 const ProjectLink = styled.a`
-  color: #61dafb;
+  color: ${({ theme }) => theme.textColor};
   text-decoration: none;
   font-weight: bold;
 

@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
-import { theme } from '@/theme';
 import { breakpoints } from '@/constants';
 
 const FooterContainer = styled.footer`
   padding: 30px;
-  background-color: ${theme.sectionBg};
-  color: white;
+  background-color: ${({theme})=> theme.sectionBg};
+  color: ${({theme})=> theme.textColor};
   text-align: center;
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -32,7 +31,7 @@ const SocialMediaContainer = styled.div`
 `;
 
 const SocialLink = styled.a`
-  color: white;
+  color: ${({theme})=> theme.textColor};
   font-size: 1.5em;
 
   &:hover {
@@ -61,7 +60,7 @@ const QuickLinksContainer = styled.div`
 `;
 
 const QuickLink = styled.a`
-  color: white;
+  color: ${({ theme }) => theme.textColor};
   margin: 0 15px;
   text-decoration: none;
 

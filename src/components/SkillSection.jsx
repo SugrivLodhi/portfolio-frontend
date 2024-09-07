@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { skills,breakpoints } from '@/constants';
 import { Container, Title } from './common';
-import { theme } from '@/theme';
 
 
 // Define animations
@@ -35,8 +34,8 @@ const SkillsGrid = styled.div`
 
 // Individual skill item styling and animation
 const SkillItem = styled.div`
-  background: ${theme.sectionBg};
-  color: white;
+  background: ${({theme})=>theme.sectionBg};
+  color: ${({theme})=>theme.textColor};
   padding: 12px;
   border-radius: 8px;
   min-width: 130px;

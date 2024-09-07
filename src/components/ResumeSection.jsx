@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaDownload } from 'react-icons/fa';
 import { Container, SubTitle } from './common';
-import { theme } from '@/theme';
 
 // Button styling for download button
 const DownloadButton = styled.a`
   display: inline-flex;
   align-items: center;
   padding: 15px 30px;
-  background-color: ${theme.btnBg};
-  color: white;
+  background-color: ${({theme})=>theme.btnBg};
+  color: ${({theme})=>theme.textColor};
   font-size: 1.2em;
   font-weight: bold;
   border-radius: 8px;
@@ -19,7 +18,7 @@ const DownloadButton = styled.a`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #21a1f1;
+    background-color: ${({theme})=>theme.btnBgHover};
   }
 
   @media (max-width: 768px) {

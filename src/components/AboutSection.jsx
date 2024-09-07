@@ -2,7 +2,6 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import photo from "../../public/sugriv.jpg";
-import { theme } from "@/theme";
 import { Title } from "./common";
 
 // Container for the entire About section
@@ -11,10 +10,10 @@ const Container = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 50px 20px;
-  background-color: ${theme.cardBg};
+  background-color: ${({theme})=>theme.cardBg};
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid ${theme.borderColor};
+  border-bottom: 1px solid ${({theme})=>theme.borderColor};
 
   @media (max-width: 1024px) {
     flex-direction: column-reverse;
@@ -72,14 +71,14 @@ const TextSection = styled.div`
   h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #333;
+    color: ${({ theme }) => theme.textColor};
     animation: ${slideInFromLeft} 1s ease-out;
   }
 
   p {
     font-size: 1.2em;
     line-height: 1.6;
-    color: #555;
+    color: ${({ theme }) => theme.textColor};
     animation: ${slideInFromLeft} 1s ease-out 0.5s;
   }
 

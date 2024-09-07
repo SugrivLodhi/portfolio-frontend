@@ -18,7 +18,7 @@ const Role = styled.p`
 
 const Duration = styled.p`
   font-size: 1em;
-  color: #b3b3b3;
+  color: ${({ theme }) => theme.textColor};
 `;
 
 // ExperienceSection component

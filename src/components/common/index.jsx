@@ -1,12 +1,11 @@
 import { breakpoints } from "@/constants";
-import { theme } from "@/theme";
 import styled, { keyframes } from "styled-components";
 
 export const Container = styled.section`
   padding: 50px;
-  background-color: ${theme.cardBg};
+  background-color: ${({theme})=>theme.cardBg};
   text-align: center;
-  border-bottom: 1px solid ${theme.borderColor};
+  border-bottom: 1px solid ${({theme})=>theme.borderColor};
   @media (max-width: ${breakpoints.mobile}) {
     padding: 30px;
   }
@@ -47,8 +46,8 @@ export const ItemWrapper = styled.div`
 
 // Individual project item styling and animation
 export const Item = styled.div`
-  background: ${theme.sectionBg};
-  color: white;
+  background: ${({theme})=>theme.sectionBg};
+  color: ${({theme})=> theme.textColor};
   padding: 20px;
   border-radius: 8px;
   width: 100%;
@@ -74,8 +73,9 @@ export const Item = styled.div`
 
 // Title styling and animation
 export const Title = styled.h2`
-  font-size: 2.5em;
-  margin-bottom: 30px;
+   font-size: 2.5em;
+   margin-bottom: 30px;
+  color: ${({ theme }) => theme.textColor};
   animation: ${fadeInUp} 1s ease-out;
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -93,6 +93,7 @@ export const Title = styled.h2`
 export const SubTitle = styled.h3`
   font-size: 2em;
   margin-bottom: 24px;
+  color: ${({ theme }) => theme.textColor};
   animation: ${fadeInUp} 1s ease-out;
 
   @media (max-width: ${breakpoints.tablet}) {

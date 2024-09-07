@@ -12,13 +12,10 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
-
-
-
 const Main = styled.main`
   flex: 1;
   padding: 20px;
-  background: #eae8e8;
+  background: ${({ theme }) => theme.background};
   margin-top: 60px;  // Adjust this value according to the height of your header
   overflow-y: auto;
 

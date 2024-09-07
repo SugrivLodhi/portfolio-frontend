@@ -5,7 +5,6 @@ import { Container, Title } from './common';
 import styled from 'styled-components';
 import StyledButton from './common/Button';
 import { Input } from './common/Input';
-import { theme } from '@/theme';
 import ResumeSection from './ResumeSection';
 import { breakpoints } from '@/constants';
 
@@ -17,7 +16,7 @@ const ContactForm = styled.form`
   min-width: 500px;
   margin: 0 auto;
   border-radius: 8px;
-  background-color: ${theme.sectionBg};
+  background-color: ${({theme})=>theme.sectionBg};
   padding: 2.5rem;
   gap: 1rem;
 
