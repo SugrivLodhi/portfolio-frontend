@@ -1,10 +1,11 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import StyledButton from './common/Button';
 import { Input } from './common/Input';
 import { theme } from '@/theme';
 import ResumeSection from './ResumeSection';
+import emailjs from 'emailjs-com';
 import { breakpoints } from '@/constants';
 
 // Container for the entire Contact section
@@ -207,6 +208,28 @@ const ResumeWrapper = styled.div`
 `;
 
 const GetInTouch = () => {
+  const formRef = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'service_wu32dvj',     // From EmailJS dashboard
+      'template_4iunawh',    // From EmailJS dashboard
+      formRef.current,
+      'vmvWVeb7rY4EAaRF4'      // From EmailJS dashboard
+    )
+    .then((result) => {
+      console.log('Email sent:', result.text);
+      alert('Message sent successfully!');
+      formRef.current.reset();
+    })
+    .catch((error) => {
+      console.error('Error sending email:', error.text);
+      alert('Failed to send message. Please try again.');
+    });
+  };
+
   return (
     <Container id="contact">
       <ContentWrapper>
@@ -217,10 +240,10 @@ const GetInTouch = () => {
         
         <Wrapper>
           <ContactSection>
-            <ContactForm>
-              <Input type="text" name="fullName" placeholder="Your Name" />
-              <Input type="email" name="email" placeholder="Your Email" />
-              <TextArea placeholder="Your Message" rows="5" required></TextArea>
+            <ContactForm ref={formRef} onSubmit={sendEmail}>
+              <Input type="text" name="fullName" placeholder="Your Name" required />
+              <Input type="email" name="email" placeholder="Your Email" required />
+              <TextArea name="message" placeholder="Your Message" rows="5" required></TextArea>
               <StyledButton type="submit">Send Message</StyledButton>
             </ContactForm>
           </ContactSection>

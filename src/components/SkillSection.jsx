@@ -205,9 +205,9 @@ const CategoryTitle = styled.h3`
 // Categorize skills
 const skillCategories = {
   'Frontend': ['JavaScript', 'TypeScript', 'React.js', 'Next.js', 'HTML3', 'CSS3', 'TailwindCSS', 'SCSS', 'Styled-component'],
-  'Backend': ['Node.js', 'Express', 'Graphql'],
-  'Database': ['PostgreSQL', 'MongoDB', 'MySQL'],
-  'Tools & Others': ['GitLab', 'GitHub']
+  'Backend': ['NodeJs', 'ExpressJs','NestJs', 'Graphql','TypeSense','BullMQ','Redis','RabbitMQ','Prisma','Sequilize'],
+  'Database': ['PostgreSQL', 'MongoDB', 'MySQL','OracleDb'],
+  'Tools & Others': ['Git','GitLab', 'GitHub','Docker','AWS','S3 Bucket']
 };
 
 // SkillSection component

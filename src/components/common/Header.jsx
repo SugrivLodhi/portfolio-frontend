@@ -12,7 +12,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 52, 89, 0.95);
+ background: rgba(0, 52, 89, 0.3);
   backdrop-filter: blur(10px);
   padding: 20px;
   color: white;
