@@ -234,9 +234,10 @@ const GetInTouch = () => {
     <Container id="contact">
       <ContentWrapper>
         <Title>Get In Touch</Title>
-        <Subtitle>
-          Let's discuss your next project or just say hello!
-        </Subtitle>
+       <Subtitle>
+  {"Let's discuss your next project or just say hello!"}
+</Subtitle>
+
         
         <Wrapper>
           <ContactSection>
