@@ -235,8 +235,8 @@ const GetInTouch = () => {
       <ContentWrapper>
         <Title>Get In Touch</Title>
        <Subtitle>
-  {"Let's discuss your next project or just say hello!"}
-</Subtitle>
+   {"Let's discuss your next project or just say hello!"}
+      </Subtitle>
 
         
         <Wrapper>

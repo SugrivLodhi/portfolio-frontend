@@ -112,7 +112,7 @@ const Subtitle = styled.p`
 
 // Skills list container
 const SkillsGrid = styled.div`
-  display: flex;
+  display: grid; /* Changed from flex to grid for proper column wrapping */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
@@ -124,11 +124,15 @@ const SkillsGrid = styled.div`
 
   @media (max-width: ${breakpoints.mobile}) {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+    gap: 0.8rem;
+  }
+
+  @media (max-width: 375px) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.6rem;
   }
 `;
 
-// Individual skill item styling and animation
 const SkillItem = styled.div`
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -143,29 +147,14 @@ const SkillItem = styled.div`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.5s ease;
-  }
 
   &:hover {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(-8px) scale(1.03); /* Slightly reduced for mobile */
     background: rgba(255, 255, 255, 0.15);
     border-color: #61dafb;
     animation: ${glow} 2s ease-in-out infinite;
-    
-    &::before {
-      left: 100%;
-    }
   }
-  
+
   animation-delay: ${props => props.delay || '0s'};
   opacity: 0;
   animation-fill-mode: forwards;
@@ -176,8 +165,13 @@ const SkillItem = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     padding: 1rem 0.6rem;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.5rem;
   }
 `;
 

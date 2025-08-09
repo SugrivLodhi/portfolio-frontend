@@ -281,11 +281,11 @@ const About = () => {
               <span className="label">Years Experience</span>
             </StatItem>
             <StatItem>
-              <span className="number">50+</span>
+              <span className="number">10+</span>
               <span className="label">Projects Completed</span>
             </StatItem>
             <StatItem>
-              <span className="number">15+</span>
+              <span className="number">20+</span>
               <span className="label">Technologies</span>
             </StatItem>
           </StatsContainer>
