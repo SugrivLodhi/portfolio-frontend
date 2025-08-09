@@ -1,75 +1,235 @@
-// src/components/ContactSection.js
 
 import React from 'react';
-import { Container, Title } from './common';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import StyledButton from './common/Button';
 import { Input } from './common/Input';
 import { theme } from '@/theme';
 import ResumeSection from './ResumeSection';
 import { breakpoints } from '@/constants';
 
+// Container for the entire Contact section
+const Container = styled.section`
+  padding: 100px 20px;
+  background: ${theme.sectionBg};
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    z-index: 1;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 80px 15px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 60px 10px;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+`;
+
+// Animations
+const fadeInUp = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const slideInLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideInRight = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+// Title styling
+const Title = styled.h2`
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
+  animation: ${fadeInUp} 1s ease-out;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #61dafb, white);
+    border-radius: 2px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 2rem;
+  }
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: ${fadeInUp} 1s ease-out;
+  animation-delay: 0.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+`;
 
 const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 700px;
-  min-width: 500px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
   border-radius: 8px;
-  background-color: ${theme.sectionBg};
-  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem;
   gap: 1rem;
+  animation: ${slideInLeft} 1s ease-out;
+  animation-delay: 0.4s;
+  opacity: 0;
+  animation-fill-mode: forwards;
 
   @media (max-width: ${breakpoints.tablet}) {
-    min-width: 100%;
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 `;
 
 const TextArea = styled.textarea`
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
   border-radius: 5px;
   border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 120px;
+  
+  &::placeholder {
+    color: #666;
+  }
+  
+  &:focus {
+    outline: none;
+    background: white;
+    box-shadow: 0 0 0 2px #61dafb;
+  }
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  gap: 4rem;
 
   @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
   }
 `;
 
-const SubWrapper = styled.div`
+const ContactSection = styled.div`
+  flex: 1;
+  
   @media (max-width: ${breakpoints.mobile}) {
     text-align: center;
   }
 `;
 
+const ResumeWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: ${slideInRight} 1s ease-out;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+`;
+
 const GetInTouch = () => {
   return (
     <Container id="contact">
-      <Wrapper>
-        <SubWrapper>
-          <Title>Get In Touch</Title>
-          <ContactForm>
-            <Input type="text" name="fullName" placeholder="Your Name" />
-            <Input type="email" email="email" placeholder="Your Email" />
-            <TextArea placeholder="Your Message" rows="5" required></TextArea>
-            <StyledButton type="submit">Send Message</StyledButton>
-          </ContactForm>
-        </SubWrapper>
-        <ResumeSection />
-      </Wrapper>
+      <ContentWrapper>
+        <Title>Get In Touch</Title>
+        <Subtitle>
+          Let's discuss your next project or just say hello!
+        </Subtitle>
+        
+        <Wrapper>
+          <ContactSection>
+            <ContactForm>
+              <Input type="text" name="fullName" placeholder="Your Name" />
+              <Input type="email" name="email" placeholder="Your Email" />
+              <TextArea placeholder="Your Message" rows="5" required></TextArea>
+              <StyledButton type="submit">Send Message</StyledButton>
+            </ContactForm>
+          </ContactSection>
+          
+          <ResumeWrapper>
+            <ResumeSection />
+          </ResumeWrapper>
+        </Wrapper>
+      </ContentWrapper>
     </Container>
   );
 };

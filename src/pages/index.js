@@ -1,9 +1,9 @@
 import { Inter } from "next/font/google";
+import HeroSection from "@/components/HeroSection";
 import About from "@/components/AboutSection";
 import SkillSection from "@/components/SkillSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectSection from "@/components/ProjectSection";
-import ResumeSection from "@/components/ResumeSection";
 import GetInTouch from "@/components/GetInTouch";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
+      <HeroSection />
       <About />
       <SkillSection />
       <ExperienceSection />

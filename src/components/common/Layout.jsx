@@ -1,4 +1,3 @@
-// src/Layout.js
 
 import React  from 'react';
 import styled from 'styled-components';
@@ -12,28 +11,19 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
-
-
-
 const Main = styled.main`
   flex: 1;
-  padding: 20px;
-  background: #eae8e8;
-  margin-top: 60px;  // Adjust this value according to the height of your header
+  background: #f8f9fa;
   overflow-y: auto;
 
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 10px;
-    margin-top: 40px;  // Adjust this value for mobile
-  
+    // Mobile specific styles if needed
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 15px;
-    margin-top: 55px;  // Adjust this value for tablets
+    // Tablet specific styles if needed
   }
 `;
-
 
 const Layout = ({ children }) => {
   return (
