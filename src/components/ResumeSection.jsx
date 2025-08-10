@@ -1,8 +1,8 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { FaDownload } from 'react-icons/fa';
-import { theme } from '@/theme';
-import { breakpoints } from '@/constants';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { FaDownload } from "react-icons/fa";
+import { theme } from "@/theme";
+import { breakpoints } from "@/constants";
 
 // Animations
 const fadeInUp = keyframes`
@@ -85,15 +85,20 @@ const DownloadButton = styled.a`
   animation-fill-mode: forwards;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left 0.5s ease;
   }
 
@@ -101,7 +106,7 @@ const DownloadButton = styled.a`
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(97, 218, 251, 0.4);
     animation: ${pulse} 2s ease-in-out infinite;
-    
+
     &::before {
       left: 100%;
     }
@@ -129,15 +134,20 @@ const DownloadIcon = styled(FaDownload)`
   }
 `;
 
+
 // The ResumeSection component
 const ResumeSection = () => {
   return (
     <Container>
       <SubTitle>Download My Resume</SubTitle>
       <Description>
-        Get a detailed overview of my skills, experience, and achievements in a comprehensive PDF format.
+        Get a detailed overview of my skills, experience, and achievements in a
+        comprehensive PDF format.
       </Description>
-      <DownloadButton href="/Resume-Sugriv-resume-Full-Stack-Developer.pdf" download="sugriv.pdf">
+      <DownloadButton
+        href="/Resume-Sugriv-FullStack-Developer.pdf"
+        download="sugriv.pdf"
+      >
         <DownloadIcon /> Download Resume
       </DownloadButton>
     </Container>

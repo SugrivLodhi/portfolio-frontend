@@ -1,8 +1,8 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
-import { theme } from '@/theme';
-import { breakpoints } from '@/constants';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from "react-icons/fa";
+import { theme } from "@/theme";
+import { breakpoints } from "@/constants";
 
 // Animations
 const fadeInUp = keyframes`
@@ -51,7 +51,7 @@ const HeroContainer = styled.section`
   padding: 0 20px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -105,8 +105,7 @@ const Title = styled.div`
   border-right: 3px solid ${theme.btnBg};
   width: fit-content;
   margin: 0 auto 2rem;
-  animation: 
-    ${typewriter} 3s steps(30, end) forwards,
+  animation: ${typewriter} 3s steps(30, end) forwards,
     ${blink} 0.75s step-end infinite;
   animation-delay: 0.5s;
 
@@ -211,7 +210,7 @@ const SocialLink = styled.a`
   font-size: 1.8rem;
   transition: all 0.3s ease;
   animation: ${float} 3s ease-in-out infinite;
-  animation-delay: ${props => props.delay || '0s'};
+  animation-delay: ${(props) => props.delay || "0s"};
 
   &:hover {
     transform: translateY(-5px) scale(1.1);
@@ -234,7 +233,7 @@ const ScrollIndicator = styled.div`
   z-index: 2;
 
   &::after {
-    content: '↓';
+    content: "↓";
     display: block;
     font-size: 2rem;
     margin-top: 0.5rem;
@@ -243,7 +242,7 @@ const ScrollIndicator = styled.div`
   @media (max-width: ${breakpoints.mobile}) {
     bottom: 1rem;
     font-size: 0.9rem;
-    
+
     &::after {
       font-size: 1.5rem;
     }
@@ -252,9 +251,9 @@ const ScrollIndicator = styled.div`
 
 const HeroSection = () => {
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
+    const aboutSection = document.getElementById("about");
     if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
+      aboutSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -264,37 +263,39 @@ const HeroSection = () => {
         <Name>Sugriv Lodhi</Name>
         <Title>Full Stack Developer</Title>
         <Description>
-          Passionate about creating exceptional digital experiences with modern web technologies. 
-          Specializing in React, Node.js, and building scalable applications that make a difference.
+          Passionate about creating exceptional digital experiences with modern
+          web technologies. Specializing in React, Node.js, and building
+          scalable applications that make a difference.
         </Description>
         <ButtonGroup>
-          <CTAButton href="#contact">
-            Get In Touch
-          </CTAButton>
-          <SecondaryButton href="/Resume-Sugriv-resume-Full-Stack-Developer.pdf" download>
+          <CTAButton href="#contact">Get In Touch</CTAButton>
+          <SecondaryButton
+            href="/Resume-Sugriv-FullStack-Developer.pdf"
+            download="sugriv.pdf"
+          >
             <FaDownload /> Download Resume
           </SecondaryButton>
         </ButtonGroup>
         <SocialLinks>
-          <SocialLink 
-            href="https://github.com/SugrivLodhi" 
-            target="_blank" 
+          <SocialLink
+            href="https://github.com/SugrivLodhi"
+            target="_blank"
             rel="noopener noreferrer"
             delay="0s"
           >
             <FaGithub />
           </SocialLink>
-          <SocialLink 
-            href="https://www.linkedin.com/in/sugriv-lodhi-ab7b33143/" 
-            target="_blank" 
+          <SocialLink
+            href="https://www.linkedin.com/in/sugriv-lodhi-ab7b33143/"
+            target="_blank"
             rel="noopener noreferrer"
             delay="0.2s"
           >
             <FaLinkedin />
           </SocialLink>
-          <SocialLink 
-            href="https://x.com/sugriv_lodhi" 
-            target="_blank" 
+          <SocialLink
+            href="https://x.com/sugriv_lodhi"
+            target="_blank"
             rel="noopener noreferrer"
             delay="0.4s"
           >
@@ -302,9 +303,7 @@ const HeroSection = () => {
           </SocialLink>
         </SocialLinks>
       </ContentWrapper>
-      <ScrollIndicator onClick={scrollToAbout}>
-        Scroll Down
-      </ScrollIndicator>
+      <ScrollIndicator onClick={scrollToAbout}>Scroll Down</ScrollIndicator>
     </HeroContainer>
   );
 };

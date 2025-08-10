@@ -285,7 +285,7 @@ const About = () => {
               <span className="label">Projects Completed</span>
             </StatItem>
             <StatItem>
-              <span className="number">20+</span>
+              <span className="number">25+</span>
               <span className="label">Technologies</span>
             </StatItem>
           </StatsContainer>
