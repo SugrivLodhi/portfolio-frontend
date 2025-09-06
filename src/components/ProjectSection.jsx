@@ -3,7 +3,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { projects, breakpoints } from '@/constants';
 import { theme } from '@/theme';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt} from 'react-icons/fa';
 
 // Container for the entire Projects section
 const Container = styled.section`
@@ -274,16 +274,25 @@ const ProjectSection = () => {
               <ProjectContent>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDescription>{project.description}</ProjectDescription>
-                <ProjectLinks>
-                  <ProjectLink href={project.link} target="_blank" rel="noopener noreferrer">
-                    <FaExternalLinkAlt /> View Live
-                  </ProjectLink>
-                  {/* Uncomment if you have GitHub links
-                  <SecondaryLink href="#" target="_blank" rel="noopener noreferrer">
-                    <FaGithub /> Code
-                  </SecondaryLink>
-                  */}
-                </ProjectLinks>
+               <ProjectLinks>
+  {project.isClient ? (
+    <ProjectLink
+      as="span" // render it as a <span> instead of <a>
+      style={{ cursor: "not-allowed", opacity: 0.6, pointerEvents: "none" }}
+    >
+      <FaExternalLinkAlt /> View Live
+    </ProjectLink>
+  ) : (
+    <ProjectLink
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FaExternalLinkAlt /> View Live
+    </ProjectLink>
+  )}
+</ProjectLinks>
+
               </ProjectContent>
             </ProjectCard>
           ))}
