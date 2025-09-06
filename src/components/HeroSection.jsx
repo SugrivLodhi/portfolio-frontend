@@ -270,8 +270,8 @@ const HeroSection = () => {
         <ButtonGroup>
           <CTAButton href="#contact">Get In Touch</CTAButton>
           <SecondaryButton
-            href="/Resume-Sugriv-FullStack-Developer.pdf"
-            download="sugriv.pdf"
+                   href="/Resume-Sugriv.pdf"
+           download="Resume-Sugriv-FullStackDev.pdf"
           >
             <FaDownload /> Download Resume
           </SecondaryButton>
