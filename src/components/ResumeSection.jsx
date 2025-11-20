@@ -145,8 +145,8 @@ const ResumeSection = () => {
         comprehensive PDF format.
       </Description>
       <DownloadButton
-        href="/Resume-Sugriv-FullStack-Developer.pdf"
-        download="sugriv.pdf"
+        href="/Resume-Sugriv.pdf"
+        download="Resume-Sugriv-FullStackDev.pdf"
       >
         <DownloadIcon /> Download Resume
       </DownloadButton>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import photo from "../../public/sugriv.jpg";
+import photo from "../../public/sugrivlodhi.png";
 import { theme } from "@/theme";
 import { breakpoints } from "@/constants";
 

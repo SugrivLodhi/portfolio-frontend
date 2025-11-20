@@ -28,24 +28,30 @@ export const breakpoints = {
   ];
 
   export const projects = [
-    {
-      title: 'Insitify',
-      description: 'A platform built with Next.js and React.js for managing institutional operations.',
-      link: 'https://www.insightifi.in/',
-    },
-    {
-      title: 'Econnex',
-      description: 'A comparsion plateform where you can compare Electricty, gas, and more, built with Next.js,Express, and PostgreSQL',
-      link: 'https://www.econnex.com.au/',
-    },
-    {
-      title: 'Amazon Clone',
-      description: 'A full-stack e-commerce application developed using Node.js, Express, and React js.',
-      link: 'https://amzon-clone-diw3knyk8-sugrivlodhis-projects.vercel.app/',
-    },
-    {
-      title: 'Apna Mistree, apna Helper',
-      description: 'A full-stack recruiter application developed using Node.js, Express, and Next.js and PostgreSQL',
-      link: 'https://portfolio-frontend-one-wheat.vercel.app/comming-soon',
-    },
-  ];
+  {
+    title: 'Vizconnect',
+    description:
+      'A scalable backend for a centralized exchange platform built with NestJS, PostgreSQL, and Prisma. Implemented RESTful APIs for authentication, KYC verification, and wallet management, with RabbitMQ for reliable message queuing and fault tolerance.',
+    link: 'https://portfolio-frontend-one-wheat.vercel.app/comming-soon',
+    isClient:true
+  },
+  {
+    title: 'Mcgrath (Rent & Buy Electronics System)',
+    description:
+      'A secure backend for an electronics rental and sales system built with NestJS, OracleDB, Sequelize, and Typesense. Features include role-based access control, fast product search, and real-time updates using Socket.IO, Redis, and BullMQ.',
+    link: 'https://portfolio-frontend-one-wheat.vercel.app/comming-soon',
+    isClient:true
+  },
+  {
+    title: 'Insightifi',
+    description:
+      'A responsive full-stack web application built with Next.js, React.js, Redux, Material-UI, and PostgreSQL. Integrated Razorpay for secure payments with a 99% success rate and optimized operations for 20% higher efficiency.',
+    link: 'https://www.insightifi.in/',
+  },
+  {
+    title: 'Apna Mistree, Apna Helper',
+    description:
+      'A full-stack recruitment and service platform developed using Node.js, Express.js, Next.js, and PostgreSQL, designed to connect users with local helpers and technicians.',
+    link: 'https://portfolio-frontend-one-wheat.vercel.app/comming-soon',
+  },
+];
