@@ -5,6 +5,7 @@ import SkillSection from "@/components/SkillSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectSection from "@/components/ProjectSection";
 import GetInTouch from "@/components/GetInTouch";
+import AIChatWidget from "@/components/AIChatWidget";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function Home() {
       <ExperienceSection />
       <ProjectSection />
       <GetInTouch />
+      <AIChatWidget />
     </>
   );
 }
