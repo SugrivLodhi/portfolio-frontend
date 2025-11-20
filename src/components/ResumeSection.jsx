@@ -135,7 +135,7 @@ const DownloadIcon = styled(FaDownload)`
 `;
 
 
-// The ResumeSection component
+// The ResumeSection component that displays the resume download button
 const ResumeSection = () => {
   return (
     <Container>
