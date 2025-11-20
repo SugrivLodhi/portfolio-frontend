@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { MessageCircle, X, Send, Settings, User, Briefcase, Code, Sparkles, Volume2, VolumeX, Hand, Upload } from 'lucide-react';
+import { MessageCircle, X, Send, Settings, Sparkles, Volume2, VolumeX, Upload } from 'lucide-react';
 
 // --- Constants ---
 
@@ -113,7 +113,7 @@ const AvatarFace = ({ isSpeaking, mousePos, avatarUrl }) => {
         }}
       >
         {/* User Image */}
-        <img 
+        <img
           src={avatarUrl} 
           alt="AI Avatar" 
           className="w-full h-full object-cover"
@@ -422,7 +422,7 @@ export default function AIChatWidget() {
                 </div>
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 pr-4">
-                👋 Hi! I'm here to help. <strong>Ask me anything</strong> about my work, projects, or skills!
+                👋 Hi! I am here to help. <strong>Ask me anything</strong> about my work, projects, or skills!
               </p>
               <button 
                 onClick={() => {
