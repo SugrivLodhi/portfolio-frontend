@@ -360,7 +360,8 @@ export default function AIChatWidget() {
       if (data.error) {
           // Explicit API error (e.g., API key invalid, quota exceeded)
           console.error("Gemini API Error:", data.error.message);
-          finalBotText = `🚨 API Error: ${data.error.message}. Please check your API Key and quota in the **Settings (gear icon)**.`;
+          finalBotText = `⏳ The system is taking a breather — a little slow right now.  
+Hang tight, it’ll be back in action soon!.`;
       } else {
           const candidate = data.candidates?.[0];
           const botText = candidate?.content?.parts?.[0]?.text;
@@ -380,7 +381,8 @@ export default function AIChatWidget() {
       }
     } catch (error) {
       console.error("AI Error:", error);
-      const errorMsg = `Connection glitch: ${error.message}. Please check your API key in the **Settings (gear icon)**.`;
+      const errorMsg = `C⏳ The system is taking a breather — a little slow right now.  
+Hang tight, it’ll be back in action soon!.`;
       setMessages(prev => [...prev, { role: 'model', text: errorMsg }]);
       speak(errorMsg);
     } finally {
