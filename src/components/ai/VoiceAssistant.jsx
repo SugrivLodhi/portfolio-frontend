@@ -51,6 +51,7 @@ export default function VoiceAssistant({ onClose }) {
   const dcRef = useRef(null);
   const streamRef = useRef(null);
   const audioRef = useRef(null);
+  const localAudioTrackRef = useRef(null);
   const transcriptRef = useRef("");
   const listRef = useRef(null);
   const endedRef = useRef(false);
@@ -102,6 +103,14 @@ export default function VoiceAssistant({ onClose }) {
     streamRef.current = null;
   }, []);
 
+  const setMicEnabled = useCallback((enabled) => {
+    try {
+      localAudioTrackRef.current && (localAudioTrackRef.current.enabled = enabled);
+    } catch {
+      // ignore
+    }
+  }, []);
+
   const handleRealtimeEvent = useCallback(
     (event) => {
       const type = event.type || "";
@@ -140,21 +149,26 @@ export default function VoiceAssistant({ onClose }) {
         type === "response.audio.delta" ||
         type === "response.output_audio.delta"
       ) {
+        // Mute the mic while the AI is speaking so its own audio doesn't
+        // get echoed back and trigger another response.
         setStatus(STATUS.SPEAKING);
+        setMicEnabled(false);
       } else if (type === "response.created") {
         transcriptRef.current = "";
         setStatus(STATUS.THINKING);
       } else if (type === "response.done") {
         finalizeAssistant();
+        setMicEnabled(true);
         setStatus(STATUS.LISTENING);
       } else if (type === "error") {
         console.error("Realtime error:", event.error);
         pushLog(`Realtime error: ${JSON.stringify(event.error)}`);
+        setMicEnabled(true);
         setErrorMsg(FRIENDLY_ERRORS.connect);
         setStatus(STATUS.ERROR);
       }
     },
-    [finalizeAssistant, pushMessage]
+    [finalizeAssistant, pushMessage, setMicEnabled]
   );
 
   const startVoice = useCallback(async () => {
@@ -207,7 +221,13 @@ export default function VoiceAssistant({ onClose }) {
 
       let stream;
       try {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+          },
+        });
       } catch (micErr) {
         pushLog(`Mic permission error: ${micErr?.name || micErr}`);
         setErrorMsg(FRIENDLY_ERRORS.mic);
@@ -215,6 +235,7 @@ export default function VoiceAssistant({ onClose }) {
         return;
       }
       streamRef.current = stream;
+      localAudioTrackRef.current = stream.getAudioTracks()[0] || null;
 
       const pc = new RTCPeerConnection({ iceServers: [] });
       pcRef.current = pc;
