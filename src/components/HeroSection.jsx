@@ -1,8 +1,9 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaDownload, FaMicrophone } from "react-icons/fa";
 import { theme } from "@/theme";
 import { breakpoints } from "@/constants";
+import { useAIAssistant } from "@/components/ai/AIAssistantProvider";
 
 // Animations
 const fadeInUp = keyframes`
@@ -16,25 +17,26 @@ const fadeInUp = keyframes`
   }
 `;
 
-const typewriter = keyframes`
-  from { width: 0 }
-  to { width: 100% }
+const float = keyframes`
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+`;
+
+const drift = keyframes`
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -40px) scale(1.15); }
+  66% { transform: translate(-40px, 30px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
 `;
 
 const blink = keyframes`
   from, to { border-color: transparent }
-  50% { border-color: ${theme.btnBg}; }
+  50% { border-color: ${theme.accent2}; }
 `;
 
-const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-`;
-
-const gradientShift = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+const typewriter = keyframes`
+  from { width: 0 }
+  to { width: 100% }
 `;
 
 // Styled Components
@@ -43,33 +45,63 @@ const HeroContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-  background-size: 400% 400%;
-  animation: ${gradientShift} 15s ease infinite;
+  background: ${theme.bg};
   position: relative;
   overflow: hidden;
   padding: 0 20px;
 
+  /* subtle grid */
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 1;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+    z-index: 0;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    min-height: 90vh;
-    padding: 0 15px;
+    min-height: 92vh;
   }
+`;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    min-height: 85vh;
-    padding: 0 10px;
-  }
+const Orb = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  animation: ${drift} 18s ease-in-out infinite;
+  z-index: 0;
+`;
+
+const OrbOne = styled(Orb)`
+  width: 480px;
+  height: 480px;
+  background: #4f46e5;
+  top: -120px;
+  left: -80px;
+`;
+
+const OrbTwo = styled(Orb)`
+  width: 420px;
+  height: 420px;
+  background: #0e7490;
+  bottom: -140px;
+  right: -60px;
+  animation-delay: -6s;
+`;
+
+const OrbThree = styled(Orb)`
+  width: 300px;
+  height: 300px;
+  background: #7c3aed;
+  top: 40%;
+  left: 55%;
+  opacity: 0.35;
+  animation-delay: -12s;
 `;
 
 const ContentWrapper = styled.div`
@@ -77,59 +109,93 @@ const ContentWrapper = styled.div`
   color: white;
   z-index: 2;
   position: relative;
-  max-width: 800px;
+  max-width: 820px;
   width: 100%;
 `;
 
+const Badge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  margin-bottom: 2rem;
+  border-radius: 999px;
+  border: 1px solid ${theme.border};
+  background: ${theme.surface};
+  backdrop-filter: blur(8px);
+  font-size: 0.85rem;
+  color: ${theme.textMuted};
+  animation: ${fadeInUp} 0.8s ease-out;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 8px #34d399;
+  }
+`;
+
 const Name = styled.h1`
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  animation: ${fadeInUp} 1s ease-out;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+  animation: ${fadeInUp} 0.9s ease-out;
+  background: linear-gradient(120deg, #f8fafc 30%, #818cf8 60%, #22d3ee 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
 `;
 
 const Title = styled.div`
-  font-size: 2rem;
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: ${theme.textMuted};
   margin-bottom: 2rem;
   overflow: hidden;
   white-space: nowrap;
-  border-right: 3px solid ${theme.btnBg};
+  border-right: 3px solid ${theme.accent2};
   width: fit-content;
   margin: 0 auto 2rem;
-  animation: ${typewriter} 3s steps(30, end) forwards,
+  animation: ${typewriter} 2.2s steps(24, end) forwards,
     ${blink} 0.75s step-end infinite;
-  animation-delay: 0.5s;
+  animation-delay: 0.4s;
+
+  .accent {
+    color: ${theme.accent2};
+  }
 
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     white-space: normal;
     border-right: none;
-    animation: ${fadeInUp} 1s ease-out;
-    animation-delay: 1s;
+    animation: ${fadeInUp} 0.9s ease-out;
+    animation-delay: 0.6s;
+    animation-fill-mode: both;
   }
 `;
 
 const Description = styled.p`
   font-size: 1.2rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: ${theme.textMuted};
   margin-bottom: 3rem;
-  animation: ${fadeInUp} 1s ease-out;
-  animation-delay: 1s;
-  opacity: 0;
-  animation-fill-mode: forwards;
+  animation: ${fadeInUp} 0.9s ease-out;
+  animation-delay: 0.9s;
+  animation-fill-mode: both;
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 1.1rem;
@@ -147,10 +213,9 @@ const ButtonGroup = styled.div`
   gap: 1rem;
   justify-content: center;
   margin-bottom: 3rem;
-  animation: ${fadeInUp} 1s ease-out;
-  animation-delay: 1.5s;
-  opacity: 0;
-  animation-fill-mode: forwards;
+  animation: ${fadeInUp} 0.9s ease-out;
+  animation-delay: 1.1s;
+  animation-fill-mode: both;
 
   @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
@@ -160,22 +225,25 @@ const ButtonGroup = styled.div`
 `;
 
 const CTAButton = styled.a`
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  background: ${theme.btnBg};
+  background: ${theme.accentGradient};
   color: white;
   text-decoration: none;
+  border: none;
   border-radius: 50px;
   font-weight: 600;
+  font-family: inherit;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    background: #2c2c91;
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -185,40 +253,49 @@ const CTAButton = styled.a`
 `;
 
 const SecondaryButton = styled(CTAButton)`
-  background: transparent;
-  border: 2px solid white;
-  color: white;
+  background: ${theme.surface};
+  border: 1px solid ${theme.border};
+  color: ${theme.textColor};
+  box-shadow: none;
+  backdrop-filter: blur(8px);
 
   &:hover {
-    background: white;
-    color: ${theme.btnBg};
+    background: ${theme.surfaceHover};
+    border-color: rgba(129, 140, 248, 0.5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  animation: ${fadeInUp} 1s ease-out;
-  animation-delay: 2s;
-  opacity: 0;
-  animation-fill-mode: forwards;
+  gap: 1rem;
+  animation: ${fadeInUp} 0.9s ease-out;
+  animation-delay: 1.3s;
+  animation-fill-mode: both;
 `;
 
 const SocialLink = styled.a`
-  color: white;
-  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: ${theme.textMuted};
+  font-size: 1.3rem;
+  background: ${theme.surface};
+  border: 1px solid ${theme.border};
+  backdrop-filter: blur(8px);
   transition: all 0.3s ease;
-  animation: ${float} 3s ease-in-out infinite;
+  animation: ${float} 4s ease-in-out infinite;
   animation-delay: ${(props) => props.delay || "0s"};
 
   &:hover {
-    transform: translateY(-5px) scale(1.1);
-    color: #61dafb;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.5rem;
+    transform: translateY(-4px);
+    color: ${theme.accent2};
+    border-color: rgba(34, 211, 238, 0.4);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.15);
   }
 `;
 
@@ -227,7 +304,10 @@ const ScrollIndicator = styled.div`
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  color: white;
+  color: ${theme.textMuted};
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   animation: ${float} 2s ease-in-out infinite;
   cursor: pointer;
   z-index: 2;
@@ -235,21 +315,18 @@ const ScrollIndicator = styled.div`
   &::after {
     content: "↓";
     display: block;
-    font-size: 2rem;
-    margin-top: 0.5rem;
+    font-size: 1.6rem;
+    margin-top: 0.4rem;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
     bottom: 1rem;
-    font-size: 0.9rem;
-
-    &::after {
-      font-size: 1.5rem;
-    }
+    font-size: 0.7rem;
   }
 `;
 
 const HeroSection = () => {
+  const { open } = useAIAssistant();
   const scrollToAbout = () => {
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
@@ -259,21 +336,32 @@ const HeroSection = () => {
 
   return (
     <HeroContainer>
+      <OrbOne />
+      <OrbTwo />
+      <OrbThree />
       <ContentWrapper>
+        <Badge>
+          <span className="dot" /> Open to new opportunities
+        </Badge>
         <Name>Sugriv Lodhi</Name>
-        <Title>Full Stack Developer</Title>
+        <Title>
+          Full Stack Developer <span className="accent">+ AI Engineer</span>
+        </Title>
         <Description>
-          Passionate about creating exceptional digital experiences with modern
-          web technologies. Specializing in React, Node.js, and building
-          scalable applications that make a difference.
+          Building scalable web applications and AI-powered digital
+          experiences with React, Next.js, Node.js and modern cloud
+          infrastructure.
         </Description>
         <ButtonGroup>
-          <CTAButton href="#contact">Get In Touch</CTAButton>
+          <CTAButton as="button" onClick={open}>
+            <FaMicrophone /> Talk to My AI
+          </CTAButton>
+          <SecondaryButton href="#projects">View Projects</SecondaryButton>
           <SecondaryButton
-                   href="/FullStack_Developer.pdf"
-           download="Sugriv-FullStackDev.pdf"
+            href="/FullStack_Developer.pdf"
+            download="Sugriv-FullStackDev.pdf"
           >
-            <FaDownload /> Download Resume
+            <FaDownload /> Resume
           </SecondaryButton>
         </ButtonGroup>
         <SocialLinks>
@@ -282,6 +370,7 @@ const HeroSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             delay="0s"
+            aria-label="GitHub"
           >
             <FaGithub />
           </SocialLink>
@@ -290,6 +379,7 @@ const HeroSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             delay="0.2s"
+            aria-label="LinkedIn"
           >
             <FaLinkedin />
           </SocialLink>
@@ -298,12 +388,13 @@ const HeroSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             delay="0.4s"
+            aria-label="X (Twitter)"
           >
             <FaTwitter />
           </SocialLink>
         </SocialLinks>
       </ContentWrapper>
-      <ScrollIndicator onClick={scrollToAbout}>Scroll Down</ScrollIndicator>
+      <ScrollIndicator onClick={scrollToAbout}>Scroll</ScrollIndicator>
     </HeroContainer>
   );
 };

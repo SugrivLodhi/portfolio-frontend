@@ -5,9 +5,10 @@ import { theme } from '@/theme';
 import { breakpoints } from '@/constants';
 
 const FooterContainer = styled.footer`
-  padding: 30px;
-  background-color: ${theme.sectionBg};
-  color: white;
+  padding: 40px 30px;
+  background-color: ${theme.bgAlt};
+  border-top: 1px solid ${theme.border};
+  color: #cbd5e1;
   text-align: center;
 
   @media (max-width: ${breakpoints.tablet}) {

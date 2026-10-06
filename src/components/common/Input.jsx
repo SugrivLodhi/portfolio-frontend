@@ -11,7 +11,7 @@ const Label = styled.label`
   display: block;
   margin-bottom: 0.5rem;
   font-size: 1rem;
-  color: #333;
+  color: #cbd5e1;
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 0.875rem;
@@ -24,22 +24,23 @@ const Label = styled.label`
 
 export const Input = styled.input`
   padding: 1rem;
-  border: none;
-  border-radius: 3px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
   font-size: 1rem;
   width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
   transition: all 0.3s ease;
-  
+
   &::placeholder {
-    color: #666;
+    color: #64748b;
   }
-  
+
   &:focus {
     outline: none;
-    background: white;
-    box-shadow: 0 0 0 2px #61dafb;
+    border-color: #818cf8;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
     transform: translateY(-2px);
   }
 

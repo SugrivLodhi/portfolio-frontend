@@ -1,304 +1,200 @@
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { projects, breakpoints } from "@/constants";
+import { theme } from "@/theme";
+import { FaExternalLinkAlt, FaLock } from "react-icons/fa";
+import {
+  Section,
+  SectionInner,
+  SectionTitle,
+  SectionSubtitle,
+  Chip,
+} from "@/components/common/Section";
+import Reveal from "@/components/common/Reveal";
 
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { projects, breakpoints } from '@/constants';
-import { theme } from '@/theme';
-import { FaExternalLinkAlt} from 'react-icons/fa';
-
-// Container for the entire Projects section
-const Container = styled.section`
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  position: relative;
-  overflow: hidden;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    padding: 80px 15px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 60px 10px;
-  }
+const shine = keyframes`
+  from { transform: translateX(-120%) skewX(-20deg); }
+  to { transform: translateX(220%) skewX(-20deg); }
 `;
 
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-`;
-
-// Animations
-const fadeInUp = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-`;
-
-// Title styling
-const Title = styled.h2`
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: ${theme.sectionBg};
-  text-align: center;
-  animation: ${fadeInUp} 1s ease-out;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, ${theme.btnBg}, #61dafb);
-    border-radius: 2px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 2.5rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 2rem;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 1.2rem;
-  color: #666;
-  text-align: center;
-  margin-bottom: 4rem;
-  animation: ${fadeInUp} 1s ease-out;
-  animation-delay: 0.2s;
-  opacity: 0;
-  animation-fill-mode: forwards;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-`;
-
-// Projects grid
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  
-  @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.75rem;
+  text-align: left;
 
   @media (max-width: ${breakpoints.mobile}) {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 `;
 
-// Project card
 const ProjectCard = styled.div`
-  background: white;
-  border-radius: 20px;
+  background: ${theme.surface};
+  border: 1px solid ${theme.border};
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  animation: ${fadeInUp} 1s ease-out;
-  animation-delay: ${props => props.delay || '0s'};
-  opacity: 0;
-  animation-fill-mode: forwards;
+  transition: all 0.35s ease;
   position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, ${theme.btnBg}, #61dafb);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    
-    .project-image {
-      transform: scale(1.05);
-    }
+    transform: translateY(-8px);
+    border-color: rgba(129, 140, 248, 0.5);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(129, 140, 248, 0.2);
   }
 `;
 
-const ProjectImage = styled.div`
-  height: 200px;
-  background: linear-gradient(135deg, ${theme.btnBg}, #61dafb);
+const CardBanner = styled.div`
+  height: 120px;
+  background: linear-gradient(135deg, #1e1b4b, #312e81 50%, #0e7490);
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  color: white;
-  transition: transform 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '🚀';
-    font-size: 4rem;
-    animation: ${float} 3s ease-in-out infinite;
+
+  .tag {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.85);
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.08);
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
+    left: 0;
+    width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-  }
-  
-  &:hover::after {
-    left: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.12),
+      transparent
+    );
+    animation: ${shine} 4.5s ease-in-out infinite;
   }
 `;
 
 const ProjectContent = styled.div`
-  padding: 2rem;
-  
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 1.5rem;
+    padding: 1.4rem;
   }
 `;
 
-// Project title and description styling
 const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: ${theme.sectionBg};
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  color: ${theme.textColor};
   font-weight: 700;
-  
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.3rem;
-  }
 `;
 
 const ProjectDescription = styled.p`
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 1.5rem;
-  
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 0.95rem;
-  }
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: ${theme.textMuted};
+  margin-bottom: 1.25rem;
+  flex: 1;
 `;
 
-const ProjectLinks = styled.div`
+const TagsRow = styled.div`
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
 `;
 
 const ProjectLink = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  background: ${theme.btnBg};
-  color: white;
+  align-self: flex-start;
+  padding: 0.6rem 1.4rem;
+  background: ${(p) => (p.$disabled ? "transparent" : theme.accentGradient)};
+  color: ${(p) => (p.$disabled ? theme.textMuted : "white")};
+  border: ${(p) => (p.$disabled ? `1px solid ${theme.border}` : "none")};
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 999px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(49, 57, 145, 0.3);
+  cursor: ${(p) => (p.$disabled ? "default" : "pointer")};
+  box-shadow: ${(p) =>
+    p.$disabled ? "none" : "0 6px 18px rgba(99, 102, 241, 0.3)"};
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(49, 57, 145, 0.4);
-    background: #2c2c91;
-  }
-  
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
+    transform: ${(p) => (p.$disabled ? "none" : "translateY(-2px)")};
+    box-shadow: ${(p) =>
+      p.$disabled ? "none" : "0 10px 24px rgba(99, 102, 241, 0.45)"};
   }
 `;
 
-const SecondaryLink = styled(ProjectLink)`
-  background: transparent;
-  color: ${theme.btnBg};
-  border: 2px solid ${theme.btnBg};
-  box-shadow: none;
-  
-  &:hover {
-    background: ${theme.btnBg};
-    color: white;
-    box-shadow: 0 4px 15px rgba(49, 57, 145, 0.3);
-  }
-`;
-
-// ProjectSection component
 const ProjectSection = () => {
   return (
-    <Container id="projects">
-      <ContentWrapper>
-        <Title>Featured Projects</Title>
-        <Subtitle>
-          A showcase of my recent work and personal projects
-        </Subtitle>
-        
+    <Section id="projects">
+      <SectionInner>
+        <Reveal>
+          <SectionTitle>Featured Projects</SectionTitle>
+        </Reveal>
+        <Reveal delay="0.1s">
+          <SectionSubtitle>
+            A showcase of my recent work and client projects
+          </SectionSubtitle>
+        </Reveal>
+
         <ProjectsGrid>
           {projects.map((project, index) => (
-            <ProjectCard key={index} delay={`${index * 0.2}s`}>
-              <ProjectImage className="project-image" />
-              <ProjectContent>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDescription>{project.description}</ProjectDescription>
-               <ProjectLinks>
-  {project.isClient ? (
-    <ProjectLink
-      as="span" // render it as a <span> instead of <a>
-      style={{ cursor: "not-allowed", opacity: 0.6, pointerEvents: "none" }}
-    >
-      <FaExternalLinkAlt /> View Live
-    </ProjectLink>
-  ) : (
-    <ProjectLink
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <FaExternalLinkAlt /> View Live
-    </ProjectLink>
-  )}
-</ProjectLinks>
-
-              </ProjectContent>
-            </ProjectCard>
+            <Reveal key={index} delay={`${index * 0.08}s`}>
+              <ProjectCard>
+                <CardBanner>
+                  <span className="tag">{project.tag}</span>
+                </CardBanner>
+                <ProjectContent>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <ProjectDescription>
+                    {project.description}
+                  </ProjectDescription>
+                  <TagsRow>
+                    {project.tags?.map((tag) => (
+                      <Chip key={tag}>{tag}</Chip>
+                    ))}
+                  </TagsRow>
+                  {project.isClient ? (
+                    <ProjectLink as="span" $disabled>
+                      <FaLock /> Client Work
+                    </ProjectLink>
+                  ) : (
+                    <ProjectLink
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaExternalLinkAlt /> View Live
+                    </ProjectLink>
+                  )}
+                </ProjectContent>
+              </ProjectCard>
+            </Reveal>
           ))}
         </ProjectsGrid>
-      </ContentWrapper>
-    </Container>
+      </SectionInner>
+    </Section>
   );
 };
 

@@ -4,33 +4,12 @@ import Image from "next/image";
 import photo from "../../public/sugrivlodhi.png";
 import { theme } from "@/theme";
 import { breakpoints } from "@/constants";
+import { Section, SectionTitle } from "@/components/common/Section";
+import Reveal from "@/components/common/Reveal";
 
-// Container for the entire About section
-const Container = styled.section`
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-    z-index: 1;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    padding: 80px 15px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 60px 10px;
-  }
+const pulse = keyframes`
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.06); opacity: 1; }
 `;
 
 const ContentWrapper = styled.div`
@@ -49,97 +28,34 @@ const ContentWrapper = styled.div`
   }
 `;
 
-// Keyframes for text animations
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const slideInFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideInFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const pulse = keyframes`
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-`;
-
-// Styling for the text section
 const TextSection = styled.div`
   flex: 1;
-  animation: ${slideInFromLeft} 1s ease-out;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    animation: ${fadeInUp} 1s ease-out;
-  }
-`;
+  h2 {
+    text-align: left;
+    display: block;
 
-const Title = styled.h2`
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: ${theme.sectionBg};
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, ${theme.btnBg}, #61dafb);
-    border-radius: 2px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 2.5rem;
-    text-align: center;
-    
     &::after {
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      transform: none;
     }
-  }
 
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 2rem;
+    @media (max-width: ${breakpoints.tablet}) {
+      text-align: center;
+
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   }
 `;
 
 const Description = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.8;
-  color: #555;
-  margin-bottom: 2rem;
-  
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.1rem;
-  }
+  color: ${theme.textMuted};
+  margin-bottom: 1.5rem;
 
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1rem;
@@ -147,99 +63,97 @@ const Description = styled.p`
 `;
 
 const HighlightText = styled.span`
-  color: ${theme.btnBg};
+  color: ${theme.accent2};
   font-weight: 600;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, ${theme.btnBg}, transparent);
-  }
 `;
 
 const StatsContainer = styled.div`
   display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
 
   @media (max-width: ${breakpoints.mobile}) {
     justify-content: center;
-    gap: 1.5rem;
+    flex-wrap: wrap;
   }
 `;
 
 const StatItem = styled.div`
   text-align: center;
-  
+  padding: 1.25rem 1.5rem;
+  background: ${theme.surface};
+  border: 1px solid ${theme.border};
+  border-radius: 14px;
+  min-width: 130px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(129, 140, 248, 0.45);
+    transform: translateY(-4px);
+  }
+
   .number {
+    font-family: var(--font-heading), inherit;
     font-size: 2rem;
     font-weight: 700;
-    color: ${theme.btnBg};
+    background: ${theme.glowGradient};
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     display: block;
   }
-  
+
   .label {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: ${theme.textMuted};
+    margin-top: 0.4rem;
+    display: block;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
+    min-width: 110px;
+    padding: 1rem;
+
     .number {
       font-size: 1.5rem;
-    }
-    
-    .label {
-      font-size: 0.8rem;
     }
   }
 `;
 
-// Styling for the image container
 const ImageSection = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${slideInFromRight} 1s ease-out;
   position: relative;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    animation: ${fadeInUp} 1s ease-out;
-  }
 `;
 
 const ImageWrapper = styled.div`
   position: relative;
-  width: 350px;
-  height: 350px;
-  
+  width: 340px;
+  height: 340px;
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: linear-gradient(45deg, ${theme.btnBg}, #61dafb);
+    inset: -18px;
+    background: conic-gradient(from 0deg, #6366f1, #8b5cf6, #22d3ee, #6366f1);
     border-radius: 50%;
     z-index: -1;
-    animation: ${pulse} 3s ease-in-out infinite;
+    animation: ${pulse} 4s ease-in-out infinite;
+    filter: blur(6px);
+    opacity: 0.7;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 280px;
-    height: 280px;
+    width: 270px;
+    height: 270px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 220px;
-    height: 220px;
+    width: 210px;
+    height: 210px;
   }
 `;
 
@@ -248,55 +162,70 @@ const ProfileImage = styled(Image)`
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid white;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  
+  border: 4px solid ${theme.bgAlt};
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease;
+
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 `;
 
-// The About component with CSS animations
 const About = () => {
   return (
-    <Container id="about">
+    <Section id="about" $alt>
       <ContentWrapper>
         <TextSection>
-          <Title>About Me</Title>
-          <Description>
-            I am a <HighlightText>Full Stack Developer</HighlightText> with a passion for creating 
-            exceptional digital experiences. With expertise in modern web technologies like 
-            <HighlightText> React.js, Node.js, and TypeScript</HighlightText>, I build scalable, 
-            maintainable applications that solve real-world problems.
-          </Description>
-          <Description>
-            My journey in web development has been driven by curiosity and a commitment to 
-            continuous learning. I believe in writing clean, efficient code and staying 
-            up-to-date with the latest industry trends and best practices.
-          </Description>
-          <StatsContainer>
-            <StatItem>
-              <span className="number">3+</span>
-              <span className="label">Years Experience</span>
-            </StatItem>
-            <StatItem>
-              <span className="number">10+</span>
-              <span className="label">Projects Completed</span>
-            </StatItem>
-            <StatItem>
-              <span className="number">25+</span>
-              <span className="label">Technologies</span>
-            </StatItem>
-          </StatsContainer>
+          <Reveal>
+            <SectionTitle>About Me</SectionTitle>
+            <Description style={{ marginTop: "1.75rem" }}>
+              I'm a <HighlightText>Full Stack Developer with 5+ years of experience</HighlightText>{" "}
+              building scalable, production-ready web applications and end-to-end
+              digital products. I work across{" "}
+              <HighlightText>
+                React.js, Next.js, Node.js, NestJS, TypeScript, PostgreSQL, MongoDB, and AWS
+              </HighlightText>
+              , with a strong focus on clean architecture, performance, and
+              maintainable engineering.
+            </Description>
+            <Description>
+              My experience spans <HighlightText>e-commerce, marketplaces, search, recommendation systems, and AI-powered product experiences</HighlightText>. At GearX, I work across frontend and backend systems, contributing to features such as intelligent search, product recommendations, bundles, checkout workflows, admin platforms, and performance optimization.
+            </Description>
+            <Description>
+              I'm also building with <HighlightText>AI, LLMs, conversational interfaces, and voice-based experiences</HighlightText>, combining AI capabilities with practical product engineering to create smarter and more useful applications.
+            </Description>
+          </Reveal>
+          <Reveal delay="0.15s">
+            <StatsContainer>
+              <StatItem>
+                <span className="number">5+</span>
+                <span className="label">Years Experience</span>
+              </StatItem>
+              <StatItem>
+                <span className="number">10+</span>
+                <span className="label">Projects Completed</span>
+              </StatItem>
+              <StatItem>
+                <span className="number">25+</span>
+                <span className="label">Technologies</span>
+              </StatItem>
+            </StatsContainer>
+          </Reveal>
         </TextSection>
         <ImageSection>
-          <ImageWrapper>
-            <ProfileImage src={photo} alt="Sugriv Lodhi" width={350} height={350} />
-          </ImageWrapper>
+          <Reveal delay="0.1s">
+            <ImageWrapper>
+              <ProfileImage
+                src={photo}
+                alt="Sugriv Lodhi"
+                width={340}
+                height={340}
+              />
+            </ImageWrapper>
+          </Reveal>
         </ImageSection>
       </ContentWrapper>
-    </Container>
+    </Section>
   );
 };
 

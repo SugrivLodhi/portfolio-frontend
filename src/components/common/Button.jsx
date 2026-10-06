@@ -7,7 +7,7 @@ const Button = styled.button`
   padding: 1rem 2rem;
   border: none;
   border-radius: 50px;
-  background: linear-gradient(135deg, ${theme.btnBg}, #61dafb);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;

@@ -12,8 +12,8 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
- background: rgba(0, 52, 89, 0.3);
-  backdrop-filter: blur(10px);
+  background: rgba(11, 15, 26, 0.72);
+  backdrop-filter: blur(14px);
   padding: 20px;
   color: white;
   position: fixed;
@@ -42,11 +42,11 @@ const Nav = styled.nav`
   display: flex;
   gap: 20px;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+  @media (max-width: ${breakpoints.tablet}) {
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
     flex-direction: column;
     align-items: flex-start;
-    background: rgba(0, 52, 89, 0.98);
+    background: rgba(14, 21, 38, 0.98);
     backdrop-filter: blur(20px);
     width: 250px;
     height: 30vh;
@@ -55,9 +55,9 @@ const Nav = styled.nav`
     right: 0;
     padding: 20px;
     z-index: 999;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
+    border-left: 1px solid rgba(148, 163, 184, 0.15);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+    transform: ${({ $isOpen }) => ($isOpen ? "translateX(0)" : "translateX(100%)")};
     transition: transform 0.3s ease-in-out;
   }
 `;
@@ -111,7 +111,7 @@ const HamburgerIcon = styled.div`
     transform: scale(1.1);
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.tablet}) {
     display: block;
     font-size: 1.5em;
   }
@@ -150,11 +150,12 @@ const Header = () => {
       <HamburgerIcon onClick={toggleMenu}>
         <FaBars />
       </HamburgerIcon>
-      <Nav isOpen={isOpen}>
+      <Nav $isOpen={isOpen}>
         <NavLink onClick={handleLinkClick} href="#about">About</NavLink>
         <NavLink onClick={handleLinkClick} href="#skills">Skills</NavLink>
         <NavLink onClick={handleLinkClick} href="#experience">Experience</NavLink>
         <NavLink onClick={handleLinkClick} href="#projects">Projects</NavLink>
+        <NavLink onClick={handleLinkClick} href="#ai-engineering">AI</NavLink>
         <NavLink onClick={handleLinkClick} href="#contact">Get In Touch</NavLink>
       </Nav>
     </HeaderContainer>

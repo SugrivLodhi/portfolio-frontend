@@ -1,238 +1,139 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { skills, breakpoints } from '@/constants';
-import { theme } from '@/theme';
-
-// Container for the entire Skills section
-const Container = styled.section`
-  padding: 100px 20px;
-  background: ${theme.sectionBg};
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
-    z-index: 1;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    padding: 80px 15px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 60px 10px;
-  }
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  text-align: center;
-`;
-
-// Define animations
-const fadeInUp = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-`;
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { breakpoints } from "@/constants";
+import { theme } from "@/theme";
+import {
+  Section,
+  SectionInner,
+  SectionTitle,
+  SectionSubtitle,
+} from "@/components/common/Section";
+import Reveal from "@/components/common/Reveal";
 
 const glow = keyframes`
-  0%, 100% { box-shadow: 0 5px 15px rgba(97, 218, 251, 0.3); }
-  50% { box-shadow: 0 5px 25px rgba(97, 218, 251, 0.6); }
+  0%, 100% { box-shadow: 0 0 0 rgba(129, 140, 248, 0); }
+  50% { box-shadow: 0 0 22px rgba(129, 140, 248, 0.35); }
 `;
 
-// Title styling
-const Title = styled.h2`
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white;
-  animation: ${fadeInUp} 1s ease-out;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #61dafb, ${theme.btnBg});
-    border-radius: 2px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 2.5rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 2rem;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
+const CategoryBlock = styled.div`
   margin-bottom: 3rem;
-  animation: ${fadeInUp} 1s ease-out;
-  animation-delay: 0.2s;
-  opacity: 0;
-  animation-fill-mode: forwards;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-`;
-
-// Skills list container
-const SkillsGrid = styled.div`
-  display: grid; /* Changed from flex to grid for proper column wrapping */
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.2rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.8rem;
-  }
-
-  @media (max-width: 375px) {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 0.6rem;
-  }
-`;
-
-const SkillItem = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 1.5rem 1rem;
-  border-radius: 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-align: center;
-  animation: ${fadeInUp} 1s ease-out;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
-  &:hover {
-    transform: translateY(-8px) scale(1.03); /* Slightly reduced for mobile */
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #61dafb;
-    animation: ${glow} 2s ease-in-out infinite;
-  }
-
-  animation-delay: ${props => props.delay || '0s'};
-  opacity: 0;
-  animation-fill-mode: forwards;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1rem;
-    padding: 1.2rem 0.8rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 0.9rem;
-    padding: 1rem 0.6rem;
-  }
-
-  @media (max-width: 375px) {
-    font-size: 0.8rem;
-    padding: 0.8rem 0.5rem;
-  }
-`;
-
-const SkillCategory = styled.div`
-  margin-bottom: 3rem;
-  
   &:last-child {
     margin-bottom: 0;
   }
 `;
 
 const CategoryTitle = styled.h3`
-  font-size: 1.5rem;
-  color: #61dafb;
-  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  color: ${theme.accent2};
+  margin-bottom: 1.4rem;
   font-weight: 600;
-  animation: ${fadeInUp} 1s ease-out;
-  
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`;
+
+const SkillsGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+`;
+
+const SkillChip = styled.div`
+  background: ${theme.surface};
+  border: 1px solid ${theme.border};
+  color: ${theme.textColor};
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-4px);
+    background: ${theme.surfaceHover};
+    border-color: rgba(129, 140, 248, 0.55);
+    color: #fff;
+    animation: ${glow} 2s ease-in-out infinite;
+  }
+
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    padding: 0.55rem 1rem;
   }
 `;
 
-// Categorize skills
 const skillCategories = {
-  'Frontend': ['JavaScript', 'TypeScript', 'React.js', 'Next.js', 'HTML3', 'CSS3', 'TailwindCSS', 'SCSS', 'Styled-component'],
-  'Backend': ['NodeJs', 'ExpressJs','NestJs', 'Graphql','TypeSense','BullMQ','Redis','RabbitMQ','Prisma','Sequilize'],
-  'Database': ['PostgreSQL', 'MongoDB', 'MySQL','OracleDb'],
-  'Tools & Others': ['Git','GitLab', 'GitHub','Docker','AWS','S3 Bucket']
+  Frontend: [
+    "JavaScript",
+    "TypeScript",
+    "React.js",
+    "Next.js",
+    "Redux",
+    "Tailwind CSS",
+    "Styled Components",
+    "MUI",
+    "SCSS",
+  ],
+  Backend: [
+    "Node.js",
+    "Express.js",
+    "NestJS",
+    "REST APIs",
+    "GraphQL",
+    "Typesense",
+    "BullMQ",
+    "Redis",
+    "RabbitMQ",
+    "Socket.IO",
+    "Prisma",
+    "Sequelize",
+  ],
+  Databases: ["PostgreSQL", "MongoDB", "MySQL", "OracleDB"],
+  "Cloud & Tools": ["AWS", "EC2", "RDS", "S3", "Docker", "Git", "GitLab", "GitHub"],
+  AI: [
+    "OpenAI API",
+    "Voice AI (Realtime)",
+    "Conversational AI",
+    "AI-Powered Search",
+    "Recommendation Systems",
+    "RAG",
+    "Prompt Engineering",
+  ],
 };
 
-// SkillSection component
 const SkillSection = () => {
   return (
-    <Container id="skills">
-      <ContentWrapper>
-        <Title>Technical Skills</Title>
-        <Subtitle>
-          Technologies and tools I use to bring ideas to life
-        </Subtitle>
-        
-        {Object.entries(skillCategories).map(([category, categorySkills], categoryIndex) => (
-          <SkillCategory key={category}>
-            <CategoryTitle style={{ animationDelay: `${categoryIndex * 0.1}s` }}>
-              {category}
-            </CategoryTitle>
-            <SkillsGrid>
-              {categorySkills.map((skill, index) => (
-                <SkillItem 
-                  key={skill} 
-                  delay={`${(categoryIndex * 0.2) + (index * 0.1)}s`}
-                >
-                  {skill}
-                </SkillItem>
-              ))}
-            </SkillsGrid>
-          </SkillCategory>
-        ))}
-      </ContentWrapper>
-    </Container>
+    <Section id="skills">
+      <SectionInner>
+        <Reveal>
+          <SectionTitle>Technical Skills</SectionTitle>
+        </Reveal>
+        <Reveal delay="0.1s">
+          <SectionSubtitle>
+            Technologies and tools I use to bring ideas to life
+          </SectionSubtitle>
+        </Reveal>
+
+        {Object.entries(skillCategories).map(
+          ([category, categorySkills], categoryIndex) => (
+            <CategoryBlock key={category}>
+              <Reveal delay={`${categoryIndex * 0.08}s`}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SkillsGrid>
+                  {categorySkills.map((skill) => (
+                    <SkillChip key={skill}>{skill}</SkillChip>
+                  ))}
+                </SkillsGrid>
+              </Reveal>
+            </CategoryBlock>
+          )
+        )}
+      </SectionInner>
+    </Section>
   );
 };
 

@@ -1,0 +1,194 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-10-06",
+  "profile": {
+    "name": "Sugriv Lodhi",
+    "title": "Full Stack Developer",
+    "experience": "5+ years",
+    "location": "India",
+    "summary": "Full Stack Developer with 5+ years of experience building scalable, production-ready web applications and end-to-end digital products across React.js, Next.js, Node.js, NestJS, TypeScript, PostgreSQL, MongoDB and AWS. Experience spans e-commerce, marketplaces, search, recommendation systems and AI-powered product experiences.",
+    "availability": "Open to freelance projects, collaborations, and new opportunities.",
+    "contact": "Via the portfolio contact form or the linked GitHub, LinkedIn and X profiles."
+  },
+  "skills": {
+    "frontend": [
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "Next.js",
+      "Material-UI (MUI)",
+      "Tailwind CSS",
+      "Styled Components",
+      "SCSS",
+      "Redux",
+      "Responsive UI",
+      "SEO optimization",
+      "React Query"
+    ],
+    "backend": [
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "REST APIs",
+      "GraphQL",
+      "Microservices",
+      "Cron jobs",
+      "RabbitMQ",
+      "Socket.IO",
+      "BullMQ",
+      "Redis"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "Oracle",
+      "Prisma ORM",
+      "Sequelize ORM"
+    ],
+    "cloudAndDevOps": [
+      "AWS EC2 (deployment, PM2 process manager)",
+      "AWS RDS & Aurora (PostgreSQL setup, subnet groups, security groups)",
+      "AWS S3 (file storage)",
+      "AWS VPC, Subnets, Security Groups",
+      "AWS IAM roles & access control",
+      "Basic Load Balancers, CloudFront, Route 53",
+      "Git, GitHub, GitLab workflow"
+    ],
+    "integrations": [
+      "Razorpay payment webhooks (payment capture, status processing, email notifications)",
+      "Power BI dashboard fetching with relational logic",
+      "Automated email templates (trial start, grace period, invoices, notifications)"
+    ],
+    "ai": [
+      "OpenAI API integration",
+      "Conversational AI assistants",
+      "Voice AI (OpenAI Realtime API)",
+      "AI-powered search",
+      "Recommendation systems",
+      "RAG concepts",
+      "Prompt engineering",
+      "LLM application integration"
+    ]
+  },
+  "experience": [
+    {
+      "company": "GearX",
+      "role": "Full Stack Developer",
+      "duration": "June 2026 - Present"
+    },
+    {
+      "company": "Cilans System",
+      "role": "Full Stack Developer",
+      "duration": "June 2024 - June 2026"
+    },
+    {
+      "company": "Tecmantras Solutions",
+      "role": "React.js Developer",
+      "duration": "July 2023 - March 2024"
+    },
+    {
+      "company": "Cimet",
+      "role": "React.js Developer",
+      "duration": "February 2022 - June 2023"
+    },
+    {
+      "company": "Newton School",
+      "role": "Full Stack Development Intern",
+      "duration": "July 2021 - February 2022"
+    }
+  ],
+  "gearX": {
+    "name": "GearX",
+    "role": "Full Stack Developer",
+    "duration": "June 2026 - Present",
+    "overview": "GearX is an e-commerce platform. Detailed verified responsibilities, technologies, architecture, features, performance work, and AI integrations are not yet in the available source information.",
+    "technologies": [],
+    "responsibilities": [],
+    "architecture": [],
+    "features": [],
+    "performance": [],
+    "ai": [],
+    "challenges": []
+  },
+  "projects": [
+    {
+      "name": "Vizconnect",
+      "type": "Centralized exchange platform backend",
+      "description": "A scalable backend for a centralized exchange platform built with NestJS, PostgreSQL and Prisma. Implemented RESTful APIs for authentication, KYC verification and wallet management, with RabbitMQ for reliable message queuing and fault tolerance.",
+      "technologies": ["NestJS", "PostgreSQL", "Prisma", "RabbitMQ", "REST"],
+      "responsibilities": [
+        "Authentication and KYC verification APIs",
+        "Wallet management",
+        "Message queuing with RabbitMQ"
+      ]
+    },
+    {
+      "name": "Mcgrath (Rent & Buy Electronics System)",
+      "type": "Electronics rental and sales backend",
+      "description": "A secure backend for an electronics rental and sales system built with NestJS, OracleDB, Sequelize and Typesense. Features include role-based access control, fast product search, and real-time updates using Socket.IO, Redis and BullMQ.",
+      "technologies": ["NestJS", "Oracle", "Sequelize", "Typesense", "Socket.IO", "Redis", "BullMQ"],
+      "responsibilities": [
+        "Role-based access control",
+        "Fast product search with Typesense",
+        "Real-time updates via Socket.IO",
+        "Background jobs with BullMQ and Redis"
+      ]
+    },
+    {
+      "name": "Insightifi",
+      "type": "Full-stack web application",
+      "description": "A responsive full-stack web application built with Next.js, React.js, Redux, Material-UI and PostgreSQL. Integrated Razorpay for secure payments and optimized operations for higher efficiency.",
+      "technologies": ["Next.js", "React.js", "Redux", "Material-UI", "PostgreSQL", "Razorpay"],
+      "responsibilities": [
+        "Responsive UI with Material-UI",
+        "Razorpay payment integration",
+        "Operational workflow optimization"
+      ],
+      "link": "https://www.insightifi.in/"
+    },
+    {
+      "name": "Apna Mistree, Apna Helper",
+      "type": "Recruitment and local services platform",
+      "description": "A full-stack recruitment and service platform developed using Node.js, Express.js, Next.js and PostgreSQL, designed to connect users with local helpers and technicians.",
+      "technologies": ["Node.js", "Express.js", "Next.js", "PostgreSQL"],
+      "responsibilities": [
+        "Full-stack feature development",
+        "Platform connecting users with local helpers and technicians"
+      ]
+    }
+  ],
+  "engineeringHighlights": [
+    "Plan and trial management systems with Active / Inactive / Grace / Trial states",
+    "Cron job to auto-update plan status after 7 days",
+    "Microservice architecture (Orders on PostgreSQL, Users/Products on MongoDB)",
+    "Next.js SEO implementation for all pages including dynamic blogs",
+    "React conversions of HTML templates (navbars, forms, sections, footers)",
+    "Custom MUI components including Autocomplete, DataGrid and inputs",
+    "Razorpay webhook handler with email notifications",
+    "Professional reusable email template system",
+    "Relational data modeling (City-State-Country, FamilyMember, Sangh) with complex associations"
+  ],
+  "faq": [
+    {
+      "q": "How many years of experience does Sugriv have?",
+      "a": "Sugriv has 4+ years of professional experience: Full Stack Development Intern at Newton School (2021-2022), React.js Developer at Cimet (2022-2023), React.js Developer at Tecmantras Solutions (2023-2024), and Full Stack Developer at Cilans System (June 2024 - present)."
+    },
+    {
+      "q": "What type of role is Sugriv looking for?",
+      "a": "Sugriv is open to freelance projects, collaborations, and new full-time opportunities as a Full Stack Developer."
+    },
+    {
+      "q": "Does Sugriv have AI experience?",
+      "a": "Yes. He has worked with OpenAI API integration, conversational AI assistants, voice AI using the OpenAI Realtime API, AI-powered search (including Typesense-powered product search in production), recommendation systems, RAG concepts, prompt engineering, and LLM application integration. This portfolio's AI assistant is itself built on the OpenAI Realtime API."
+    },
+    {
+      "q": "What AWS services has Sugriv used?",
+      "a": "EC2 (deployment with PM2), RDS and Aurora (PostgreSQL setup, subnet groups, security groups), S3 (file storage), VPC/Subnets/Security Groups, IAM roles and access control, plus working knowledge of Load Balancers, CloudFront and Route 53."
+    },
+    {
+      "q": "How would Sugriv design an e-commerce application?",
+      "a": "Based on his experience: a Next.js frontend for SEO and performance, NestJS/Node.js services behind REST or GraphQL APIs, PostgreSQL for transactional data (orders, payments) with Prisma or Sequelize, MongoDB for flexible product catalogs where appropriate, Redis + BullMQ for background jobs, Typesense for fast product search, Socket.IO for real-time updates, Razorpay/Stripe webhooks for payments, and AWS (EC2/RDS/S3) for deployment - a microservice approach he has used in production."
+    }
+  ]
+}

@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Main = styled.main`
   flex: 1;
-  background: #f8f9fa;
+  background: #0b0f1a;
   overflow-y: auto;
 
   @media (max-width: ${breakpoints.mobile}) {

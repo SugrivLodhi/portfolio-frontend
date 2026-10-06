@@ -193,7 +193,7 @@ export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [showWelcomePopup, setShowWelcomePopup] = useState(true);
-  const [apiKey, setApiKey] = useState('AIzaSyBmDuEuwqZNLYH7zw3SriAWMk0xglg3ojg'); 
+  const [apiKey, setApiKey] = useState('');
   const [knowledgeBase, setKnowledgeBase] = useState(DEFAULT_KNOWLEDGE_BASE);
   const [avatarUrl, setAvatarUrl] = useState(DEFAULT_AVATAR);
   const [messages, setMessages] = useState([
